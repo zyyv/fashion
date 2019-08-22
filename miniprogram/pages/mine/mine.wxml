@@ -1,0 +1,137 @@
+<view class="u_header">
+  <view class="header-box">
+    <view class="user">
+      <view class="img">
+        <image src="../../images/home/news/news_001.jpg"></image>
+      </view>
+      <view class="info">
+        <view class="top clear">
+          <view class="name f-l">能不能烦我一次牌</view>
+          <view class="tag f-l">金卡</view>
+        </view>
+        <view class="bottom">
+          <text>#19980624#</text>
+          <text class="iconfont icon-edit edit"></text>
+        </view>
+      </view>
+    </view>
+    <view class="growUp">
+      <text class="value">我的成长值2750</text>
+      <view class="power">
+        <text>查看特权</text>
+        <text class="iconfont icon-right"></text>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="content">
+  <canvas style="width: 100%; height: 300rpx;background: #404040;" id="main" canvas-id="maincanvas"></canvas>
+  <!-- <canvas style="width: 100%; height: 300rpx;background: #404040;" canvas-id="textcanvas"></canvas> -->
+  <van-cell title="我的订单" value="全部订单" is-link></van-cell>
+  <view class="menus clear">
+    <block wx:for="{{menus}}" wx:for-item="menu" wx:key="index">
+      <view class="menu-item f-l">
+        <text class="iconfont {{menu.icon}} icon"></text>
+        <view class="item-name">{{menu.name}}</view>
+      </view>
+    </block>
+  </view>
+  <view class="tags">
+    <view class="push">
+      <view class="head">潮流推手</view>
+      <view class="con">
+        <view class="tip">
+          <text class="title">本月订单：</text>
+          <text class="val">0</text>
+        </view>
+        <view class="tip">
+          <text class="title">预计佣金：</text>
+          <text class="val">￥0</text>
+        </view>
+      </view>
+    </view>
+    <view class="deal">
+      <view class="head">球鞋交易</view>
+      <view class="con">
+        <view class="tip">
+          <text class="title">出售数量：</text>
+          <text class="val">0</text>
+        </view>
+        <view class="tip">
+          <text class="title">我的收入：</text>
+          <text class="val">￥0</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="gary-line"></view>
+  <view class="usermeans clear">
+    <block wx:for="{{usermeans}}" wx:for-item="m" wx:key="index">
+      <view class="mean f-l">
+        <text class="val">{{m.val}}</text>
+        <view class="mean-name">{{m.name}}</view>
+      </view>
+    </block>
+  </view>
+  <view class="useractives clear">
+    <view class="mean f-l">
+      <text class="iconfont icon-pintuan icon" style="font-size:55rpx"></text>
+      <view class="mean-name" style="margin-top:0">5折拼团</view>
+    </view>
+    <view class="mean f-l">
+      <text class="iconfont icon-tuishou icon" style="font-size:46rpx;margin-top:5rpx"></text>
+      <view class="mean-name" style="margin-top:3rpx">潮流推手</view>
+    </view>
+    <view class="mean f-l">
+      <text class="iconfont icon-dizhi icon" style="font-size:52rpx;"></text>
+      <view class="mean-name" style="margin-top:0">地址管理</view>
+    </view>
+    <button class="btn f-l" open-type="contact" bindcontact="handleContact">
+      <view class="btn-con">
+        <text class="iconfont icon-kefu kefu"></text>
+        <text class="btn-txt">客服服务</text>
+      </view>
+    </button>
+  </view>
+  <view class="gary-line"></view>
+</view>
+<view class="footer">
+  <view class="optimization">
+    <text class="iconfont icon-shuxian" style="font-weight:700;font-size:30rpx;"></text>
+    <text>为您优选</text>
+  </view>
+  <view class="commodity">
+    <block wx:for="{{goodsList}}" wx:for-item="goods" wx:key="index">
+      <view class="goods" bindtap="detail">
+        <image class="goods_img" src="{{goods.image}}" mode="scaleToFill"></image>
+        <view wx:if="{{index==showAni}}" catchtap="hide_bg" data-index="{{index}}" class="tag_bg"></view>
+        <button wx:if="{{index==showAni}}" catchtap="same" class="findSame">找相似</button>
+        <button wx:if="{{index==showAni}}" catchtap="dislike" class="dislike">不喜欢</button>
+        <view class="goods_title">{{goods.title}}</view>
+        <view class="goods_price clear">
+          <text wx:if="{{!goods.discount}}" class="price_now f-l">￥{{goods.now}}</text>
+          <block wx:else>
+            <text class="price_present f-l">￥{{goods.sale.present}}</text>
+            <text class="price_original f-l">￥{{goods.sale.original}}</text>
+          </block>
+          <text catchtap="more" data-index="{{index}}" class="iconfont icon-more more f-r"></text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+
+
+
+<!-- <block>
+  <view class='modal' wx:if="{{showAuth}} ">
+    <view class='title'>微信授权</view>
+    <view class='content'>想要获取你的微信信息，是否同意？</view>
+    <view class='btn-group'>
+      <button class='btn' ontap="closeAuth ">否</button>
+      <button class='btn confirm' open-type="getUserInfo " lang="zh_CN " bindgetuserinfo="getUserInfo ">是</button>
+    </view>
+  </view>
+  <view class="overlay " ontap="closeAuth " wx:if="{{showAuth}} "></view>
+  <i-toast id="toast " />
+</block> -->

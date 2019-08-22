@@ -1,0 +1,166 @@
+/* pages/home/home.wxss */
+
+Page {
+  background-color: #fff;
+}
+
+.h-hidden {
+  overflow: hidden;
+  height: 370rpx;
+}
+
+.lunbo-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+swiper{
+  height: 360rpx;
+}
+.lun-item {
+  width: 100%;
+  height: 100%;
+}
+
+.lun-item image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 滑块 */
+
+.dots {
+  width: 100%;
+  height: 10rpx;
+  position: relative;
+  background-color: #f4f4f4;
+  overflow: hidden;
+}
+
+.dots #slider {
+  width: 33.3%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: #096;
+  transition: all 0.5s ease-in-out;
+}
+
+.search-box {
+  width: 100%;
+  height: 100rpx;
+  background-color: #fff;
+}
+
+.tab-content {
+  width: 100%;
+  /* height: 400rpx; */
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+  align-items: stretch;
+}
+
+.tab-content .tab-img {
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 10rpx;
+}
+
+.tab-desc {
+  width: 80%;
+  text-align: left;
+  font-size: 28rpx;
+  color: #666;
+}
+
+.news {
+  width: 100%;
+  /* height: 300rpx; */
+  padding: 10rpx 20rpx;
+}
+
+.news-header {
+  width: 100%;
+  /* height: 50rpx; */
+  line-height: 45rpx;
+  padding-bottom: 16rpx;
+  border-bottom: 1rpx solid #ccc;
+}
+
+.news-header .ic-news {
+  font-size: 34rpx;
+}
+
+.news-header .hearder-title {
+  font-size: 34rpx;
+  color: lightsalmon;
+  margin-left: 10rpx;
+}
+
+.news-content {
+  width: 100%;
+}
+
+.news-content .news-item {
+  width: 100%;
+  margin-top: 20rpx;
+  height: 240rpx;
+  overflow: hidden;
+  align-items: stretch;
+}
+
+.news-content .news-img {
+  width: 320rpx;
+  height: 220rpx;
+  margin: 10rpx;
+}
+
+.news-content .con {
+  position: relative;
+  width: 350rpx;
+  height: 100%;
+  padding: 10rpx;
+  font-size: 28rpx;
+  color: #666;
+  overflow: hidden;
+}
+
+.con .con-txt {
+  width: 100%;
+  height: 132rpx;
+  color: #000;
+  font-size: 32rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+
+.con .remark{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50rpx;
+}
+.remark .re-time,.remark .re-eyes{
+  display: flex;
+  align-items: center;
+}
+.remark .time-txt,.remark .eyes-txt{
+  font-size: 26rpx;
+  margin:0 10rpx;
+}
+.news-footer{
+  width: 100%;
+  /* height: 50rpx; */
+  text-align: center;
+  line-height: 50rpx;
+  margin-top: 10rpx;
+  background: transparent;
+}
+.news-footer .noMoreData{
+  font-size: 26rpx;
+  color: #CDB5CD;
+}

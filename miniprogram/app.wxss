@@ -1,0 +1,362 @@
+/**app.wxss**/
+
+@font-face {
+  font-family: 'iconfont';  /* project id 1293799 */
+  src: url('//at.alicdn.com/t/font_1293799_y00v6rg71z.eot');
+  src: url('//at.alicdn.com/t/font_1293799_y00v6rg71z.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_1293799_y00v6rg71z.woff2') format('woff2'),
+  url('//at.alicdn.com/t/font_1293799_y00v6rg71z.woff') format('woff'),
+  url('//at.alicdn.com/t/font_1293799_y00v6rg71z.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_1293799_y00v6rg71z.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-more::before {
+  content: "\e62b";
+}
+.icon-shuxian::before {
+  content: "\e606";
+}
+
+.icon-tuishou::before {
+  content: "\e649";
+}
+
+.icon-dizhi::before {
+  content: "\e62c";
+}
+
+.icon-pintuan::before {
+  content: "\e64c";
+}
+
+.icon-kefu::before {
+  content: "\e612";
+}
+
+.icon-tuihuan::before {
+  content: "\e605";
+}
+
+.icon-pinjia::before {
+  content: "\e616";
+}
+
+.icon-shouhuo::before {
+  content: "\e622";
+}
+
+.icon-fahuo::before {
+  content: "\e708";
+}
+
+.icon-fukuan::before {
+  content: "\e629";
+}
+
+.icon-right::before {
+  content: "\e635";
+}
+
+.icon-edit::before {
+  content: "\e729";
+}
+
+.icon-news::before {
+  content: "\e610";
+}
+
+.icon-doubleRight::before {
+  content: "\e62a";
+}
+
+.icon-time::before {
+  content: "\e607";
+}
+
+.icon-eyes::before {
+  content: "\e60d";
+}
+
+/* 登录授权 */
+
+.modal {
+  width: 80%;
+  height: 255rpx;
+  background: #fff;
+  padding-top: 20rpx;
+  position: fixed;
+  top: 30%;
+  left: 10%;
+  z-index: 99;
+}
+
+.overlay {
+  width: 750rpx;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  background: #000;
+  z-index: 20;
+  opacity: 0.6;
+}
+
+.modal .title {
+  width: 100%;
+  text-align: center;
+  font-size: 34rpx;
+  color: #313131;
+}
+
+.modal .content {
+  width: 100%;
+  text-align: center;
+  padding: 10rpx 30rpx;
+  font-size: 30rpx;
+  color: #999;
+  background: #fff;
+}
+
+.modal .btn-group {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  float: left;
+  border-top: 1rpx solid #eee;
+  background: #fff;
+}
+
+.modal .btn-group .btn {
+  width: 50%;
+  float: left;
+  text-align: center;
+  font-size: 30rpx;
+  border-radius: 0;
+}
+
+.modal .btn-group .confirm {
+  color: #09bb07;
+  border-left: 1rpx solid #eee;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+button {
+  background: initial;
+}
+
+button:focus {
+  outline: 0;
+}
+
+button::after {
+  border: none;
+}
+
+view {
+  box-sizing: border-box;
+}
+
+page {
+  background: #f6f6f6;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.userinfo, .uploader, .tunnel {
+  margin-top: 40rpx;
+  height: 140rpx;
+  width: 100%;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-left: none;
+  border-right: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 300ms ease;
+}
+
+.userinfo-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+  background-size: cover;
+  background-color: white;
+}
+
+.userinfo-avatar:after {
+  border: none;
+}
+
+.userinfo-nickname {
+  font-size: 32rpx;
+  color: #007aff;
+  background-color: white;
+  background-size: cover;
+}
+
+.userinfo-nickname::after {
+  border: none;
+}
+
+.uploader, .tunnel {
+  height: auto;
+  padding: 0 0 0 40rpx;
+  flex-direction: column;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.uploader-text, .tunnel-text {
+  width: 100%;
+  line-height: 52px;
+  font-size: 34rpx;
+  color: #007aff;
+}
+
+.uploader-container {
+  width: 100%;
+  height: 400rpx;
+  padding: 20rpx 20rpx 20rpx 0;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.uploader-image {
+  width: 100%;
+  height: 360rpx;
+}
+
+.tunnel {
+  padding: 0 0 0 40rpx;
+}
+
+.tunnel-text {
+  position: relative;
+  color: #222;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.tunnel-text:first-child {
+  border-top: none;
+}
+
+.tunnel-switch {
+  position: absolute;
+  right: 20rpx;
+  top: -2rpx;
+}
+
+.disable {
+  color: #888;
+}
+
+.service {
+  position: fixed;
+  right: 40rpx;
+  bottom: 40rpx;
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  background: linear-gradient(#007aff, #0063ce);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  transition: all 300ms ease;
+}
+
+.service-button {
+  position: absolute;
+  top: 40rpx;
+}
+
+.service:active {
+  box-shadow: none;
+}
+
+.request-text {
+  padding: 20rpx 0;
+  font-size: 24rpx;
+  line-height: 36rpx;
+  word-break: break-all;
+}
+
+.header {
+  width: 100%;
+  height: 300rpx;
+}
+
+.content {
+  width: 100%;
+}
+
+.footer {
+  width: 100%;
+  /* height: 300rpx; */
+}
+
+.flex-c {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-a {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-b {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clear::after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+.f-l {
+  float: left;
+}
+
+.f-r {
+  float: right;
+}
+
+.gary-line {
+  width: 100%;
+  height: 20rpx;
+  background-color: #f1f1f1;
+}
+
+.fff {
+  background-color: #fff;
+}

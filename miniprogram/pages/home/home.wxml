@@ -1,0 +1,73 @@
+<!--pages/home/home.wxml-->
+<view class="wrapper">
+  <view class="header h-hidden">
+    <view class="lunbo-container">
+      <swiper autoplay="true" interval="3000" circular="true" display-multiple-items="1" easing-function="easeInOutCubic" bindchange="currentChange">
+        <block wx:for="{{lunbo_data}}" wx:for-item="lunbo_data" wx:key="{{lunbo_data.type_id}}">
+          <swiper-item>
+            <view class="lun-item ">
+              <image src="{{lunbo_data.url}}"></image>
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="dots">
+        <view id="slider" style="left:{{sliderLeft * sliderWidth + 'rpx'}};width:{{100 / lunbo_data.length + '%'}}"></view>
+      </view>
+    </view>
+  </view>
+  <view class="content">
+    <van-cell-group>
+      <van-field value="{{ value }}" placeholder="你想了解点什么?" border="{{ false }}" use-button-slot bind:change="searchValueChange">
+        <van-button bind:click="btnSearch" slot="button" size="small" round="true" type="primary">搜索</van-button>
+      </van-field>
+    </van-cell-group>
+    <view class="gary-line"></view>
+    <van-tabs animated>
+      <block wx:for="{{tabs}}" wx:key="{{item.id}}">
+        <van-tab title="{{item.title}}">
+          <view class="flex-b tab-content">
+            <image class="tab-img" src="{{item.img}}"></image>
+            <view class="tab-desc">
+              {{item.desc}}
+            </view>
+          </view>
+        </van-tab>
+      </block>
+    </van-tabs>
+    <view class="gary-line"></view>
+    <view class="fff news">
+      <view class="news-header">
+        <text class="iconfont icon-news ic-news"></text>
+        <text class="hearder-title">头条新闻</text>
+      </view>
+      <view class="news-content">
+        <block wx:for="{{newsList}}" wx:for-item="newsItem" wx:key="{{newsItem._id}}">
+          <view bindtap="newsDetails" class="flex-b news-item" data-id="{{newsItem.newsid}}">
+            <image class="news-img" src="{{newsItem.image}}"></image>
+            <view class="con">
+              <view class="con-txt">{{newsItem.title}}</view>
+              <view class="remark flex-a">
+                <view class="re-time">
+                  <text class="iconfont icon-time" style="font-size:28rpx"></text>
+                  <text class="time-txt">{{newsItem.date}}</text>
+                </view>
+                <view class="re-eyes">
+                  <text class="iconfont icon-eyes"></text>
+                  <text class="eyes-txt">{{newsItem.viewNum}}</text>
+                </view>
+              </view>
+            </view>
+
+          </view>
+          <view class="gary-line" wx-if="{{index != newsList.length - 1}}"></view>
+        </block>
+      </view>
+      <view class="news-footer">
+        <van-loading wx-if="{{showLoading}}" size="20px" type="spinner" color="#3a9afa" />
+        <view class="noMoreData" wx-if="{{!continueLoad}}">没有更多数据啦···</view>
+      </view>
+    </view>
+  </view>
+  <view class="footer"></view>
+</view>

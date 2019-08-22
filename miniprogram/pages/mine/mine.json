@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "i-toast": "../../libray/dist/toast/index",
+    "van-cell": "../../libray/dist/cell/index"
+  }
+}

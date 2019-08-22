@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "openapi": [
+      "customerServiceMessage.send"
+    ]
+  },
+  "enable":true,
+  "callbacks":{
+    "msgype":1,
+    "env":"garbage-zy-jfq6e",
+    "functionName":"onDemo"
+  }
+}

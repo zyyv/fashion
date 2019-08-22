@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-field": "../../libray/dist/field/index",
+    "van-cell-group": "../../libray/dist/cell-group/index",
+    "van-button": "../../libray/dist/button/index",
+    "van-tab": "../../libray/dist/tab/index",
+    "van-tabs": "../../libray/dist/tabs/index",
+    "van-loading": "../../libray/dist/loading/index"
+  }
+}
