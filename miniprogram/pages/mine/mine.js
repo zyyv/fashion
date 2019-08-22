@@ -1,17 +1,18 @@
 const app = getApp()
 const factor = {
-  speed: .0008, // 运动速度，值越小越慢
+  speed: .008, // 运动速度，值越小越慢
   t: 0 //  贝塞尔函数系数
 };
 var ctx = null;
 var timer = null;
-
+var lastFrameTime = 0
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+
     showAni: -1, //显示的索引
     menus: [{
       icon: 'icon-fukuan',
@@ -72,7 +73,7 @@ Page({
       now: 999,
       sale: {}
     }, {
-      title: 'JBL T280 TWs无线蓝牙入耳式耳机',
+      title: 'JBL T280 TWs无线蓝牙入s无线蓝牙入耳式s无线蓝牙入耳式s无线蓝牙入耳式s无线蓝牙入耳式耳式耳机',
       image: '../../images/home/news/news_001.jpg',
       discount: true,
       now: 999,
@@ -137,28 +138,28 @@ Page({
     this.startTimer();
   },
   startTimer() {
-    this.drawImage([
-      [{
-        x: 30,
-        y: 400
-      }, {
-        x: 70,
-        y: 300
-      }, {
-        x: -50,
-        y: 150
-      }, {
-        x: 30,
-        y: 0
+    let data = [
+      [{ // 三阶贝塞尔曲线起点坐标值
+        x: 58,
+        y: 105
+      }, { // 三阶贝塞尔曲线第一个控制点坐标值
+        x: this.randomNum(150, 20),
+        y: this.randomNum(32, 20)
+      }, { // 三阶贝塞尔曲线第二个控制点坐标值
+        x: this.randomNum(200, 20),
+        y: this.randomNum(88, 20)
+      }, { // 三阶贝塞尔曲线终点坐标值
+        x: this.randomNum(300, 20),
+        y: this.randomNum(30, 20)
       }]
-    ])
+    ]
+    this.drawRun(data, this.randomColor())
   },
-  drawImage: function(data) {
-    var that = this
-    var p10 = data[0][0]; // 三阶贝塞尔曲线起点坐标值
-    var p11 = data[0][1]; // 三阶贝塞尔曲线第一个控制点坐标值
-    var p12 = data[0][2]; // 三阶贝塞尔曲线第二个控制点坐标值
-    var p13 = data[0][3]; // 三阶贝塞尔曲线终点坐标值
+  drawRun(data, color) {
+    var p10 = data[0][0]
+    var p11 = data[0][1];
+    var p12 = data[0][2];
+    var p13 = data[0][3];
     var t = factor.t;
 
     /*计算多项式系数 （下同）*/
@@ -172,49 +173,52 @@ Page({
 
     var xt1 = ax1 * (t * t * t) + bx1 * (t * t) + cx1 * t + p10.x;
     var yt1 = ay1 * (t * t * t) + by1 * (t * t) + cy1 * t + p10.y;
-
-    // /*计算xt yt的值 */
     factor.t += factor.speed;
-    ctx.drawImage("../../images/mine/littleGirl.png", xt1, yt1, 30, 30);
-    
-    // ctx.drawImage("../../images/heart2.png", xt2, yt2, 30, 30);
-    // ctx.drawImage("../../images/heart3.png", xt3, yt3, 30, 30);
-    ctx.draw();
-    if (factor.t > 1) {
+    ctx.clearRect(0, 0, this.data.canvasSize[0], this.data.canvasSize[1])
+    ctx.drawImage('../../images/mine/littleGirl.png', 0, 80, 67, 55)
+    ctx.beginPath()
+    ctx.setFillStyle(color)
+    // 起点  58  105
+    ctx.arc(xt1, yt1, 5, 0, 2 * Math.PI);
+    ctx.fill()
+    ctx.draw()
+
+    if (factor.t > 1 || yt1 < -10) {
       factor.t = 0;
       cancelAnimationFrame(timer);
-      that.startTimer();
+      this.startTimer();
     } else {
-      var lastFrameTime = 0;
-      var doAnimationFrame = function(callback) {
-        var currTime = new Date().getTime();
-        var timeToCall = Math.max(0, 16 - (currTime - lastFrameTime));
-        var id = setTimeout(function() {
-          callback(currTime + timeToCall);
-        }, timeToCall);
-        lastFrameTime = currTime + timeToCall;
-        return id;
-      };
-      timer = doAnimationFrame(function() {
-        that.drawImage([
-          [{
-            x: 20,
-            y: 200
-          }, {
+      timer = this.doAnimationFrame(() => {
+        this.drawRun([
+          [{ // 三阶贝塞尔曲线起点坐标值
+            x: 58,
+            y: 105
+          }, { // 三阶贝塞尔曲线第一个控制点坐标值
+            x: 150,
+            y: 32
+          }, { // 三阶贝塞尔曲线第二个控制点坐标值
             x: 200,
-            y: 300
-          }, {
-            x: -50,
-            y: 150
-          }, {
-            x: 30,
-            y: 0
+            y: 88
+          }, { // 三阶贝塞尔曲线终点坐标值
+            x: 300,
+            y: 30
           }]
-        ])
+        ], color)
       })
     }
 
-
+  },
+  doAnimationFrame(callback) {
+    var currTime = new Date().getTime();
+    var timeToCall = Math.max(0, 16 - (currTime - lastFrameTime));
+    var id = setTimeout(function() {
+      callback(currTime + timeToCall);
+    }, timeToCall);
+    lastFrameTime = currTime + timeToCall;
+    return id;
+  },
+  cancelAnimationFrame(id) {
+    clearTimeout(id)
   },
   userLogin: function() {
     var that = this
@@ -245,6 +249,14 @@ Page({
   },
   randomColor() {
     return "rgb(" + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + "," + (~~(Math.random() * 255)) + ")";
+  },
+  /**
+   * @param num 初始值
+   * @param range 范围
+   * return 返回一个随机范围内生成的数
+   */
+  randomNum(num, range) {
+    return Math.random() * (num - range) + range * 2
   },
   /**
    * 生命周期函数--监听页面加载

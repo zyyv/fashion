@@ -356,14 +356,18 @@ page {
 
 .goods .goods_title {
   width: 100%;
-  padding: 10rpx 8rpx;
+  padding: 6rpx 8rpx;
   color: #474747;
   font-size: 24rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
 }
 
 .goods .goods_price {
   /* color: #474747; */
-  padding: 0 8rpx;
+  padding: 0 8rpx 6rpx;
 }
 
 .goods_price .price_now {
