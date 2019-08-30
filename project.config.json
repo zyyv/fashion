@@ -58,9 +58,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "b",
-					"pathName": "pages/b/index",
+					"id": 3,
+					"name": "社区",
+					"pathName": "pages/community/index",
+					"query": "",
 					"scene": null
 				}
 			]

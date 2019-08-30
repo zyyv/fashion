@@ -1,0 +1,96 @@
+.posts {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 20rpx;
+  border-radius: 12rpx;
+  background: #fff;
+  /* box-shadow: 2rpx 2rpx 16rpx 2rpx #ccc; */
+}
+
+.posts .posts_img {
+  width: 100%;
+}
+
+.posts .posts_title {
+  width: 100%;
+  padding: 6rpx 16rpx;
+  color: #474747;
+  font-size: 24rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.posts .posts_price {
+  padding: 16rpx 16rpx 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.posts_price .users {
+  width: 60%;
+  display: flex;
+  align-items: center;
+}
+
+.users image {
+  width: 42rpx;
+  height: 42rpx;
+  border-radius: 50%;
+}
+
+.users .username {
+  width: calc(100% - 42rpx - 8rpx);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 24rpx;
+  margin-left: 8rpx;
+}
+
+.posts_price  .like {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 80rpx; */
+}
+
+.posts_price  .like.origi {
+  color: #8a8a8a;
+}
+
+.posts_price   .like.likeing {
+  color: #c02d31;
+}
+
+.like .flower {
+  font-size: 32rpx;
+}
+
+.like .likenum {
+  font-size: 26rpx;
+}
+
+.posts_price .price_now {
+  color: #242528;
+  font-size: 24rpx;
+}
+
+.posts_price .price_present {
+  color: #c02d31;
+  font-size: 24rpx;
+}
+
+.posts_price .price_original {
+  color: #b0b0b0;
+  font-size: 24rpx;
+  text-decoration: line-through;
+  margin-left: 8rpx;
+}
+
+.posts_price .more {
+  color: #b0b0b0;
+}

@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "van-tab": "../../libray/dist/tab/index",
+    "van-tabs": "../../libray/dist/tabs/index",
+    "post":"../../components/post/post"
+  }
+}

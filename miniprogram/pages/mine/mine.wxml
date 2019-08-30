@@ -25,7 +25,7 @@
   </view>
 </view>
 <view class="content">
-  <canvas style="width: 100%; height: 300rpx;background: #404040;" id="main" canvas-id="maincanvas"></canvas>
+  <!-- <canvas style="width: 100%; height: 300rpx;background: #404040;" id="main" canvas-id="maincanvas"></canvas> -->
   <!-- <canvas style="width: 100%; height: 300rpx;background: #404040;" canvas-id="textcanvas"></canvas> -->
   <van-cell title="我的订单" value="全部订单" is-link></van-cell>
   <view class="menus clear">
