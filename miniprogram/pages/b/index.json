@@ -1,5 +1,0 @@
-{
-  "usingComponents": {
-    "van-transition": "../../libray/dist/transition/index"
-  }
-}

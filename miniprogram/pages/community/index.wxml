@@ -145,3 +145,7 @@
     </view>
   </van-tab>
 </van-tabs>
+<view bindtap="release" style="right:{{fabu.right + 'rpx'}};opacity:{{fabu.opacity}}" class="fabu">
+  <text class="iconfont icon-fabu"></text>
+  <text>发布</text>
+</view>

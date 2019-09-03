@@ -63,6 +63,10 @@ Page({
     })
   },
   btnSearch() {
+    wx.navigateTo({
+      url: '/pages/index/index',
+    })
+    return
     //搜索按钮点击事件
     if (this.data.searchChangeVal != '') {
       wx.showModal({ //提示

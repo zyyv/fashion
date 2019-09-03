@@ -143,3 +143,21 @@ swiper {
   height: 10rpx;
   background: transparent;
 }
+
+.fabu{
+  width: 104rpx;
+  padding: 8rpx 10rpx;
+  background: #c22a2c;
+  position: fixed;
+  /* right: -58rpx; */
+  bottom: 115rpx;
+  /* opacity: 1; */
+  border-top-left-radius:30rpx;
+  border-bottom-left-radius:30rpx;
+  font-size: 24rpx;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all ease-in-out 0.3s;
+}

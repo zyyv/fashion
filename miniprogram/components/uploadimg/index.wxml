@@ -1,0 +1,33 @@
+<scroll-view>
+  <view class="uploadbox">
+    <block wx:for="{{currentFiles}}" wx:key="{{index}}">
+      <view wx:if="{{item.error}}" data-index="{{index}}" bindtap="previewImage" class="img-box uploadfile">
+        <image src="{{item.url}}" mode="aspectFill" />
+        <view class="file-content">
+          <icon type="warn" size="23" color="#F43530"></icon>
+        </view>
+        <view class="close-box" catchtap="delete">
+          <text class="iconfont icon-close close"></text>
+        </view>
+      </view>
+      <view wx:elif="{{item.loading}}" data-index="{{index}}" bindtap="previewImage" class="img-box uploadfile">
+        <image src="{{item.url}}" mode="aspectFill" />
+        <view class="file-content">
+          <view class="weui-loading"></view>
+        </view>
+        <view class="close-box" catchtap="delete">
+          <text class="iconfont icon-close close"></text>
+        </view>
+      </view>
+      <view wx:else data-index="{{index}}" bindtap="previewImage" class="img-box">
+        <image src="{{item.url}}" mode="aspectFill" />
+        <view class="close-box" data-index="{{index}}" catchtap="deleteImage">
+          <text class="iconfont icon-close close"></text>
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{currentFiles.length < maxCount}}" class="img-box upload-box">
+      <view class="upload-btn" bindtap="chooseImage"></view>
+    </view>
+  </view>
+</scroll-view>

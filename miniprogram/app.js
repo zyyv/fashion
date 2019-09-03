@@ -1,4 +1,6 @@
 //app.js
+
+const watch = require("./utils/watch.js");
 App({
   onLaunch: function() {
 
@@ -13,6 +15,9 @@ App({
     }
 
     this.globalData = {}
+  },
+  setWatcher(page) {
+    watch.setWatcher(page);
   },
   // 判断是否登录
   isLogin: function() {

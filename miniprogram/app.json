@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/home/home",
     "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
@@ -11,10 +12,10 @@
     "pages/openapi/serverapi/serverapi",
     "pages/openapi/callback/callback",
     "pages/openapi/cloudid/cloudid",
-    "pages/home/home",
     "pages/news/details",
     "pages/a/index",
     "pages/community/index",
+    "pages/community/release",
     "pages/mine/mine"
   ],
   "permission": {

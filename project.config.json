@@ -38,10 +38,11 @@
 			"current": 2,
 			"list": [
 				{
-					"id": -1,
-					"name": "db guide",
-					"pathName": "pages/databaseGuide/databaseGuide",
-					"query": ""
+					"id": 0,
+					"name": "默认",
+					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
 				},
 				{
 					"id": -1,
@@ -61,6 +62,13 @@
 					"id": 3,
 					"name": "社区",
 					"pathName": "pages/community/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "发布",
+					"pathName": "pages/community/release",
 					"query": "",
 					"scene": null
 				}
