@@ -2,11 +2,21 @@
 	"miniprogramRoot": "miniprogram/",
 	"cloudfunctionRoot": "cloudfunctions/",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"appid": "wx70d49114809ab0c1",
 	"projectname": "garbage",
@@ -69,6 +79,20 @@
 					"id": -1,
 					"name": "发布",
 					"pathName": "pages/community/release",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "话题",
+					"pathName": "pages/community/talk",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "位置",
+					"pathName": "pages/community/location",
 					"query": "",
 					"scene": null
 				}

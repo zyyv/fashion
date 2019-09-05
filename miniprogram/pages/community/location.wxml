@@ -1,0 +1,26 @@
+<!--pages/community/location.wxml-->
+
+<van-search value="{{ searchVal }}" bind:change="bindKeyInput" placeholder="搜索附近位置"></van-search>
+<view class="locList">
+  <view bindtap="select" class="loc-item" data-index="-2">
+    <view class="loc-name t">不显示位置</view>
+    <text wx:if="{{selectIndex == -2}}" class="iconfont icon-selected selected"></text>
+  </view>
+  <view bindtap="select" class="loc-item" data-index="-1">
+    <view class="loc-name t">{{city}}</view>
+    <text wx:if="{{selectIndex == -1}}" class="iconfont icon-selected selected"></text>
+  </view>
+  <block wx:if="{{searchLocList.length != 0}}">
+    <view bindtap="select" data-item="{{item}}" data-index="{{index}}" class="loc-item" wx:for="{{searchLocList}}" wx:key="{{index}}">
+      <label class="loc-name">{{item.name}}</label>
+      <text wx:if="{{index == selectIndex}}" class="iconfont icon-selected selected"></text>
+    </view>
+  </block>
+  <block wx:else>
+    <view bindtap="select" data-item="{{item}}" data-index="{{index}}" class="loc-item" wx:for="{{locList}}" wx:key="{{index}}">
+      <label class="loc-name">{{item.name}}</label>
+      <view class="loc-desc">{{item.addr}}</view>
+      <text wx:if="{{index == selectIndex}}" class="iconfont icon-selected selected"></text>
+    </view>
+  </block>
+</view>

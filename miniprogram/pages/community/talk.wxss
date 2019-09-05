@@ -1,0 +1,73 @@
+/* pages/community/talk.wxss */
+
+Page {
+  background-color: #fff;
+}
+
+.talk-title {
+  width: 100%;
+  padding: 30rpx;
+  font-size: 32rpx;
+  color: #242528;
+}
+
+.talk-list {
+  width: 100%;
+  padding: 0 20rpx;
+}
+
+.talk-item {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  margin-bottom: 30rpx;
+}
+
+.talk-item .talk-img {
+  width: 100rpx;
+  height: 100rpx;
+  margin-right: 20rpx;
+}
+
+.talk-item .talk-info {
+  /* width: 100%; */
+  flex: 1;
+  height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.talk-info .info-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 28rpx;
+  color: #242528;
+  margin-top: 8rpx;
+}
+
+.talk-info .info-desc {
+  font-size: 24rpx;
+  color: #8a8a8a;
+}
+
+.info-tag {
+  position: relative;
+  width: 160rpx;
+  display: flex;
+  align-items: center;
+}
+.info-tag .hot {
+  color: #be2827;
+}
+.info-tag .hot-txt {
+  color: #be2827;
+  font-weight: 700;
+}
+.info-tag .gift {
+  color: #f8da57;
+  font-size: 38rpx;
+  position: absolute;
+  right: 0;
+}

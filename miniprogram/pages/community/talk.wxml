@@ -1,0 +1,116 @@
+<!--pages/community/talk.wxml-->
+<view class="talk-title">推荐话题</view>
+<view class="talk-list">
+  <view class="talk-item">
+    <image src='https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/userImgs/my-image_0_1567393299771.jpg?sign=67a68979a19c1a1edc4f0b9514bf94d9&t=1567561301' class="talk-img"></image>
+    <view class="talk-info">
+      <view class="info-title">
+        <label class="info-name">#OOTD</label>
+        <view class="info-tag">
+          <text class="iconfont icon-hot hot"></text>
+          <text class="hot-txt">HOT</text>
+          <text class="iconfont icon-gift gift"></text>
+        </view>
+      </view>
+      <view class="info-desc">晒出你的今日穿搭</view>
+    </view>
+  </view>
+  <view class="talk-item">
+    <image src='https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/userImgs/my-image_0_1567393299771.jpg?sign=67a68979a19c1a1edc4f0b9514bf94d9&t=1567561301' class="talk-img"></image>
+    <view class="talk-info">
+      <view class="info-title">
+        <label class="info-name">#OOTD</label>
+        <view class="info-tag">
+          <text class="iconfont icon-hot hot"></text>
+          <text class="hot-txt">HOT</text>
+          <text class="iconfont icon-gift gift"></text>
+        </view>
+      </view>
+      <view class="info-desc">晒出你的今日穿搭</view>
+    </view>
+  </view>
+  <view class="talk-item">
+    <image src='https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/userImgs/my-image_0_1567393299771.jpg?sign=67a68979a19c1a1edc4f0b9514bf94d9&t=1567561301' class="talk-img"></image>
+    <view class="talk-info">
+      <view class="info-title">
+        <label class="info-name">#OOTD</label>
+        <view class="info-tag">
+          <text class="iconfont icon-hot hot"></text>
+          <text class="hot-txt">HOT</text>
+          <text class="iconfont icon-gift gift"></text>
+        </view>
+      </view>
+      <view class="info-desc">晒出你的今日穿搭</view>
+    </view>
+  </view>
+  <view class="talk-item">
+    <image src='https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/userImgs/my-image_0_1567393299771.jpg?sign=67a68979a19c1a1edc4f0b9514bf94d9&t=1567561301' class="talk-img"></image>
+    <view class="talk-info">
+      <view class="info-title">
+        <label class="info-name">#OOTD</label>
+        <view class="info-tag">
+          <text class="iconfont icon-hot hot"></text>
+          <text class="hot-txt">HOT</text>
+          <text class="iconfont icon-gift gift"></text>
+        </view>
+      </view>
+      <view class="info-desc">晒出你的今日穿搭</view>
+    </view>
+  </view>
+  <view class="talk-item">
+    <image src='https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/userImgs/my-image_0_1567393299771.jpg?sign=67a68979a19c1a1edc4f0b9514bf94d9&t=1567561301' class="talk-img"></image>
+    <view class="talk-info">
+      <view class="info-title">
+        <label class="info-name">#OOTD</label>
+        <view class="info-tag">
+          <text class="iconfont icon-hot hot"></text>
+          <text class="hot-txt">HOT</text>
+          <text class="iconfont icon-gift gift"></text>
+        </view>
+      </view>
+      <view class="info-desc">晒出你的今日穿搭</view>
+    </view>
+  </view>
+  <view class="talk-item">
+    <image src='https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/userImgs/my-image_0_1567393299771.jpg?sign=67a68979a19c1a1edc4f0b9514bf94d9&t=1567561301' class="talk-img"></image>
+    <view class="talk-info">
+      <view class="info-title">
+        <label class="info-name">#OOTD</label>
+        <view class="info-tag">
+          <text class="iconfont icon-hot hot"></text>
+          <text class="hot-txt">HOT</text>
+          <text class="iconfont icon-gift gift"></text>
+        </view>
+      </view>
+      <view class="info-desc">晒出你的今日穿搭</view>
+    </view>
+  </view>
+  <view class="talk-item">
+    <image src='https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/userImgs/my-image_0_1567393299771.jpg?sign=67a68979a19c1a1edc4f0b9514bf94d9&t=1567561301' class="talk-img"></image>
+    <view class="talk-info">
+      <view class="info-title">
+        <label class="info-name">#OOTD</label>
+        <view class="info-tag">
+          <text class="iconfont icon-hot hot"></text>
+          <text class="hot-txt">HOT</text>
+          <text class="iconfont icon-gift gift"></text>
+        </view>
+      </view>
+      <view class="info-desc">晒出你的今日穿搭</view>
+    </view>
+  </view>
+  <view class="talk-item">
+    <image src='https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/userImgs/my-image_0_1567393299771.jpg?sign=67a68979a19c1a1edc4f0b9514bf94d9&t=1567561301' class="talk-img"></image>
+    <view class="talk-info">
+      <view class="info-title">
+        <label class="info-name">#OOTD</label>
+        <view class="info-tag">
+          <text class="iconfont icon-hot hot"></text>
+          <text class="hot-txt">HOT</text>
+          <text class="iconfont icon-gift gift"></text>
+        </view>
+      </view>
+      <view class="info-desc">晒出你的今日穿搭</view>
+    </view>
+  </view>
+</view>

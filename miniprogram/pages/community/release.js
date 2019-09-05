@@ -1,13 +1,21 @@
+const app = getApp()
 Page({
   data: {
     files: [],
     currentTxtLen: 0,
     maxTxtLen: 200,
-    content: ''
+    content: '',
+    locationTxt: ''
   },
   onLoad() {
     this.setData({
       uplaodFile: this.uplaodFile.bind(this)
+    })
+  },
+  onShow() {
+    let locationTxt = app.globalData.locationInfo ? app.globalData.locationInfo.name : '打卡纪念'
+    this.setData({
+      locationTxt: locationTxt
     })
   },
   chooseImage: function(e) {
