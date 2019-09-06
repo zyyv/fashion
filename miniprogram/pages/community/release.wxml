@@ -1,4 +1,4 @@
-<uploader bindfail="uploadError" bindsuccess="uploadSuccess" upload="{{uplaodFile}}" files="{{files}}" max-count="9">
+<uploader bindfail="uploadError" binddelete="deleteImg" bindsuccess="uploadSuccess" upload="{{uploadFile}}" files="{{files}}" max-count="9">
 </uploader>
 <view class="section">
   <textarea class="txt" bindinput="editInput" maxlength="200" value="{{content}}" placeholder-class="placeholder" placeholder="这一刻，说点啥好呢···" />
@@ -10,5 +10,5 @@
 <van-cell icon="location-o" title="所在位置" value="{{locationTxt}}" is-link link-type="navigateTo" url="/pages/community/location" />
 <view class="line"></view>
 <view class="commit">
-  <button class="ok">发布笔记</button>
+  <button bindtap="commit" class="ok">发布笔记</button>
 </view>

@@ -21,15 +21,15 @@ Component({
       type: Number,
       value: 1
     },
-    files: {
-      type: Array,
-      value: [],
-      observer: function observer(newVal, oldVal, changedP) {
-        this.setData({
-          currentFiles: newVal
-        });
-      }
-    },
+    // files: {
+    //   type: Array,
+    //   value: [],
+    //   observer: function observer(newVal, oldVal, changedP) {
+    //     this.setData({
+    //       currentFiles: newVal
+    //     });
+    //   }
+    // },
     // select: {
     //   type: Function,
     //   value: function value() {}
@@ -70,7 +70,7 @@ Component({
 
       if (this.uploading) return;
       wx.chooseImage({
-        count: this.data.maxCount - this.data.files.length,
+        count: this.data.maxCount - this.data.currentFiles.length,
         success: function success(res) {
           var invalidIndex = -1;
           res.tempFiles.forEach(function(item, index) {
@@ -112,28 +112,25 @@ Component({
           });
           if (!files || !files.length) return;
           if (typeof _this.data.upload === 'function') {
-            var len = _this.data.files.length;
-            var newFiles = _this.data.files.concat(files);
+            var len = _this.data.currentFiles.length;
+            var newFiles = _this.data.currentFiles.concat(files);
             _this.setData({
-              files: newFiles,
               currentFiles: newFiles
             });
-            _this.loading = true;
+            // _this.loading = true;
             _this.data.upload(obj).then(function(json) {
-              _this.loading = false;
+              // _this.loading = false;
               if (json.urls) {
-                var oldFiles = _this.data.files;
+                var oldFiles = _this.data.currentFiles;
                 json.urls.forEach(function(url, index) {
                   oldFiles[len + index].loading = false;
                   oldFiles[len + index].url = url;
                 });
                 _this.setData({
-                  files: oldFiles,
-                  currentFiles: newFiles
+                  currentFiles: oldFiles
                 });
-                console.log(1, _this.data.files)
                 console.log(2, _this.data.currentFiles)
-                _this.triggerEvent('success', json, {});
+                _this.triggerEvent('success', _this.data.currentFiles, {});
               } else {
                 _this.triggerEvent('fail', {
                   type: 3,
@@ -142,13 +139,13 @@ Component({
               }
             }).catch(function(err) {
               _this.loading = false;
-              var oldFiles = _this.data.files;
+              var oldFiles = _this.data.currentFiles;
               res.tempFilePaths.map(function(item, index) {
                 oldFiles[len + index].error = true;
                 oldFiles[len + index].loading = false;
               });
               _this.setData({
-                files: oldFiles,
+                // files: oldFiles,
                 currentFiles: newFiles
               });
               _this.triggerEvent('fail', {
@@ -171,13 +168,13 @@ Component({
     },
     deleteImage: function deleteImage(e) {
       let index = e.currentTarget.dataset.index;
-      let files = this.data.files;
+      let files = this.data.currentFiles;
+      let deleteList = [files[index].url]
       files.splice(index, 1);
-      console.log(files)
       this.setData({
-        files: files,
         currentFiles: files
       });
+      this.triggerEvent('delete', deleteList);
     }
   }
 });

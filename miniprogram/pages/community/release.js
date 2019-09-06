@@ -10,8 +10,14 @@ Page({
   },
   onLoad() {
     this.setData({
-      uplaodFile: this.uplaodFile.bind(this)
+      uploadFile: this.uploadFile.bind(this)
     })
+  },
+  commit() {
+    console.log(this.data.files)
+  },
+  updateImgFiles(options) {
+    console.log(options)
   },
   selectGoods() {
     wx.showToast({
@@ -22,7 +28,7 @@ Page({
   onShow() {
     console.log(app.globalData)
     let locationTxt = app.globalData.locationInfo ? app.globalData.locationInfo.name : '打卡纪念'
-    let talkTxt = app.globalData.talkInfo ? app.globalData.talkInfo.name : 'Select Your Tag'
+    let talkTxt = app.globalData.talkInfo ? '#' + app.globalData.talkInfo.name : 'Select Your Tag'
     this.setData({
       locationTxt: locationTxt,
       talkTxt: talkTxt
@@ -47,7 +53,7 @@ Page({
       urls: this.data.files // 需要预览的图片http链接列表
     })
   },
-  uplaodFile(files) {
+  uploadFile(files) {
     console.log('upload files', files)
     // 文件上传的函数，返回一个promise
     return new Promise((resolve, reject) => {
@@ -92,7 +98,31 @@ Page({
     console.log('upload error', e.detail)
   },
   uploadSuccess(e) {
-    console.log('upload success', e.detail)
+    let files = e.detail.map((ele) => {
+      return ele.url
+    })
+    this.setData({
+      files: files
+    })
+    console.log('upload success', this.data.files)
+  },
+  deleteImg(e, m) {
+    let deleteArr = e.detail;
+    let index = this.data.files.indexOf(deleteArr[0])
+    if (index != -1) {
+      this.data.files.splice(index, 1);
+    }
+    this.setData({
+      files: this.data.files
+    })
+    wx.cloud.deleteFile({
+      fileList: deleteArr
+    }).then(res => {
+      // handle success
+      console.log("删除成功", res.fileList)
+    }).catch(error => {
+      // handle error
+    })
   },
   editInput(event) {
     if (event.detail.value.length <= this.data.maxTxtLen) {

@@ -6,7 +6,7 @@
         <view class="file-content">
           <icon type="warn" size="23" color="#F43530"></icon>
         </view>
-        <view class="close-box" catchtap="delete">
+        <view class="close-box" data-index="{{index}}" catchtap="deleteImage">
           <text class="iconfont icon-close close"></text>
         </view>
       </view>
@@ -15,7 +15,7 @@
         <view class="file-content">
           <view class="weui-loading"></view>
         </view>
-        <view class="close-box" catchtap="delete">
+        <view class="close-box" data-index="{{index}}" catchtap="deleteImage">
           <text class="iconfont icon-close close"></text>
         </view>
       </view>
