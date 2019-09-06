@@ -9,10 +9,11 @@ Page({
   data: {
     latitude: '',
     longitude: '',
-    locList: [],
-    searchLocList: [],
-    city: "",
-    selectIndex: -3
+    locList: [], //附近的位置信息
+    searchLocList: [], //搜索的位置结果
+    city: "", //当前的城市
+    selectIndex: -3, //选择的索引
+    isLocation: false //是否开启定位
   },
 
   /**
@@ -25,17 +26,52 @@ Page({
     this.getNowLocation();
     this.getRegeocode()
   },
+  /**
+   * 重新获取定位
+   */
+  openLocation() {
+    let that = this
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.userLocation']) {
+          wx.openSetting({
+            success(res) {
+              // console.log(res.authSetting)
+              if (res.authSetting['scope.userLocation']) {
+                that.getNowLocation();
+                that.getRegeocode()
+              }
+            }
+          })
+        }
+      }
+    })
+  },
+  /**
+   * 选择位置
+   */
   select(e) {
     let index = parseInt(e.currentTarget.dataset.index)
     let item = e.currentTarget.dataset.item
     this.setData({
       selectIndex: index
     })
-    app.globalData.locationInfo = item
-    wx.navigateBack({
-
-    })
+    if (index == -2) {
+      app.globalData.locationInfo = {
+        name: '保密哟'
+      }
+    } else if (index == -1) {
+      app.globalData.locationInfo = {
+        name: this.data.city
+      }
+    } else {
+      app.globalData.locationInfo = item
+    }
+    wx.navigateBack({})
   },
+  /**
+   * 获取附近的位置信息
+   */
   getRegeocode() {
     let that = this
     var fail = function(data) {
@@ -58,6 +94,9 @@ Page({
       success: success,
     });
   },
+  /**
+   * 绑定搜索
+   */
   bindKeyInput: function(event) {
     var that = this;
     if (event.detail === '') {
@@ -79,7 +118,7 @@ Page({
     }
     BMap.suggestion({
       query: event.detail,
-      region: '苏州',
+      region: that.data.city,
       city_limit: true,
       fail: fail,
       success: success
@@ -91,6 +130,9 @@ Page({
   onReady: function() {
 
   },
+  /**
+   * 获取当前位置
+   */
   getNowLocation() {
     let that = this;
     wx.showLoading({
@@ -104,7 +146,8 @@ Page({
       success: function(res) {
         that.setData({
           latitude: res.latitude,
-          longitude: res.longitude
+          longitude: res.longitude,
+          isLocation: true
         })
         console.log(res)
       },
@@ -113,6 +156,9 @@ Page({
         wx.showToast({
           title: "定位失败",
           icon: "none"
+        })
+        that.setData({
+          isLocation: false
         })
       },
       complete: function() {

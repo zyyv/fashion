@@ -1,7 +1,7 @@
 <!--pages/community/location.wxml-->
 
-<van-search value="{{ searchVal }}" bind:change="bindKeyInput" placeholder="搜索附近位置"></van-search>
-<view class="locList">
+<van-search disabled="{{!isLocation}}" value="{{ searchVal }}" bind:change="bindKeyInput" placeholder="搜索附近位置"></van-search>
+<view wx:if="{{isLocation}}" class="locList">
   <view bindtap="select" class="loc-item" data-index="-2">
     <view class="loc-name t">不显示位置</view>
     <text wx:if="{{selectIndex == -2}}" class="iconfont icon-selected selected"></text>
@@ -23,4 +23,9 @@
       <text wx:if="{{index == selectIndex}}" class="iconfont icon-selected selected"></text>
     </view>
   </block>
+</view>
+<view wx:else class="show">
+  <image mode="aspectFit" src="https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/404.gif?sign=baddb34da86542259ccfb236653f9855&t=1567403706"></image>
+  <text>找不到您的位置，还麻烦您开启定位呢(。﹏。*)</text>
+  <button bindtap="openLocation" class="openLocation">开启定位</button>
 </view>

@@ -5,10 +5,10 @@
 </view>
 <view class="txtTip">{{currentTxtLen}}/{{maxTxtLen}}</view>
 <view class="line"></view>
-<van-cell title="#选择话题#" value="Select Your Tag" is-link link-type="navigateTo" url="/pages/community/talk" />
-<van-cell icon="flower-o" title="关联商品" value="去选择" is-link />
+<van-cell title="# 选择话题 #" value="{{talkTxt}}" is-link link-type="navigateTo" url="/pages/community/talk" />
+<van-cell icon="flower-o" title="关联商品" value="去选择" is-link bind:click="selectGoods" />
 <van-cell icon="location-o" title="所在位置" value="{{locationTxt}}" is-link link-type="navigateTo" url="/pages/community/location" />
 <view class="line"></view>
 <view class="commit">
-  <button class="ok">发布</button>
+  <button class="ok">发布笔记</button>
 </view>

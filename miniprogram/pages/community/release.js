@@ -5,17 +5,27 @@ Page({
     currentTxtLen: 0,
     maxTxtLen: 200,
     content: '',
-    locationTxt: ''
+    locationTxt: '',
+    talkTxt: ''
   },
   onLoad() {
     this.setData({
       uplaodFile: this.uplaodFile.bind(this)
     })
   },
+  selectGoods() {
+    wx.showToast({
+      title: "(X﹏X)  暂时没有商品可以选择。",
+      icon: "none"
+    })
+  },
   onShow() {
+    console.log(app.globalData)
     let locationTxt = app.globalData.locationInfo ? app.globalData.locationInfo.name : '打卡纪念'
+    let talkTxt = app.globalData.talkInfo ? app.globalData.talkInfo.name : 'Select Your Tag'
     this.setData({
-      locationTxt: locationTxt
+      locationTxt: locationTxt,
+      talkTxt: talkTxt
     })
   },
   chooseImage: function(e) {
