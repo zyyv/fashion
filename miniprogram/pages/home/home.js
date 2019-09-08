@@ -63,10 +63,10 @@ Page({
     })
   },
   btnSearch() {
-    wx.navigateTo({
-      url: '/pages/index/index',
-    })
-    return
+    // wx.navigateTo({
+    //   url: '/pages/index/index',
+    // })
+    // return
     //搜索按钮点击事件
     if (this.data.searchChangeVal != '') {
       wx.showModal({ //提示
@@ -89,7 +89,7 @@ Page({
   loadLunBo() {
     const db = wx.cloud.database()
     db.collection('Images').where({
-      _openid: this.data.openid,
+      // _openid: this.data.openid,
       type: "lunbo"
     }).get({
       success: res => {
@@ -111,7 +111,7 @@ Page({
     let newsNum = this.data.newsList.length
     if (this.data.skip === 0) {
       db.collection('news').where({
-        _openid: this.data.openid
+        // _openid: this.data.openid
       }).limit(this.data.limit).orderBy('fbDate', 'desc').get({
         success: res => {
           this.setData({ 
@@ -140,7 +140,7 @@ Page({
       })
     } else {
       db.collection('news').where({
-        _openid: this.data.openid
+        // _openid: this.data.openid
       }).skip(this.data.skip).limit(this.data.limit).get({
         success: res => {
           this.setData({
@@ -223,7 +223,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    
   },
 
   /**

@@ -1,4 +1,7 @@
 // pages/community/index.js
+import Toast from '../../libray/dist/toast/toast.js';
+const app = getApp()
+const db = wx.cloud.database()
 Page({
 
   /**
@@ -88,7 +91,8 @@ Page({
       scrollTop: null,
       scrollIng: null
     },
-    scrollTimer: null
+    scrollTimer: null,
+    loginShow: false
   },
 
   /**
@@ -104,13 +108,46 @@ Page({
   onReady: function() {
     // this.popup = this.selectComponent("#popup");
   },
+  loadAllPosts() {
+    let that = this
+    db.collection('posts')
+      .get({
+        success: function(res) {
+          // res.data 是包含以上定义的两条记录的数组
+          console.log(res.data)
+          that.setData({
+            followPosts: res.data
+          })
+        }
+      })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.loadAllPosts()
   },
-
+  getUserInfo(event) {
+    console.log(event)
+    let res = event.detail;
+    if (res.errMsg.indexOf('ok') != -1) {
+      wx.setStorageSync("user", res);
+      wx.setStorageSync("userInfo", res.userInfo);
+      app.globalData.userInfo = res.userInfo;
+      wx.navigateTo({
+        url: '/pages/community/release',
+      })
+    }
+  },
+  closeDialog() {
+    this.setData({
+      loginShow: false
+    });
+  },
+  cancelDialog() {
+    // Toast.fail(`不登录肯定是没法发布的···`);
+    // return
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */
@@ -145,10 +182,16 @@ Page({
   onShareAppMessage: function() {
 
   },
-  release(){
-    wx.navigateTo({
-      url: '/pages/community/release',
-    })
+  release() {
+    if (app.isLogin()) {
+      wx.navigateTo({
+        url: '/pages/community/release',
+      })
+    } else {
+      this.setData({
+        loginShow: true
+      })
+    }
   },
   onPageScroll(e) {
     this.data.fabu = {
@@ -187,6 +230,6 @@ Page({
     }, 300)
   },
   watch: {
-    
+
   }
 })

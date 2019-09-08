@@ -2,6 +2,9 @@
   "usingComponents": {
     "van-tab": "../../libray/dist/tab/index",
     "van-tabs": "../../libray/dist/tabs/index",
-    "post":"../../components/post/post"
+    "van-dialog": "../../libray/dist/dialog/index",
+    "post":"../../components/post/post",
+    "van-toast": "../../libray/dist/toast/index",
+    "login":"../../components/login/login"
   }
 }

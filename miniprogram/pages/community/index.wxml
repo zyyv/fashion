@@ -149,3 +149,7 @@
   <text class="iconfont icon-fabu"></text>
   <text>发布</text>
 </view>
+<van-dialog use-slot title="麻烦登录一下 (๑• . •๑)" message="登录解锁更多彩蛋···" show="{{ loginShow }}" show-cancel-button confirmButtonText="登录" confirm-button-open-type="getUserInfo" bind:close="closeDialog" bind:cancel="cancelDialog" bind:getuserinfo="getUserInfo">
+  <image src="cloud://garbage-zy-jfq6e.6761-garbage-zy-jfq6e/home_tabs/nothing.gif" />
+</van-dialog>
+<van-toast id="van-toast" />

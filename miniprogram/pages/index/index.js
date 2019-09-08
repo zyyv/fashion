@@ -47,7 +47,7 @@ Page({
   },
 
   onGetOpenid: function() {
-    debugger
+    // debugger
     wx.switchTab({
       url: '../home/home',
       success: function(res) {console.log('success')},

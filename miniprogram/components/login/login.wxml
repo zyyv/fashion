@@ -1,0 +1,5 @@
+<!--components/login/login.wxml-->
+<view class="login-box">
+  <view class="login-title">麻烦登录一下 (๑• . •๑)</view>
+  <view class="login-desc">为了</view>
+</view>

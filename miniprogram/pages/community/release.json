@@ -2,6 +2,7 @@
   "usingComponents": {
     "uploader": "../../components/uploadimg/index",
     "van-cell": "../../libray/dist/cell/index",
-    "van-button": "../../libray/dist/button/index"
+    "van-button": "../../libray/dist/button/index",
+    "van-toast": "../../libray/dist/toast/index"
   }
 }

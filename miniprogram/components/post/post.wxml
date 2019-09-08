@@ -1,16 +1,16 @@
 <!--components/post.wxml-->
 
 <view class="posts" bindtap="detail">
-  <image class="posts_img" src="{{post.src}}" mode="widthFix"></image>
-  <view class="posts_title">{{post.title}}</view>
+  <image class="posts_img" src="{{post.files[0]}}" mode="widthFix"></image>
+  <view class="posts_title">{{post.content}}</view>
   <view class="posts_price">
     <view class="users">
-      <image src="{{post.userface}}"></image>
-      <view class="username">{{post.username}}</view>
+      <image src="{{post.author.avatarUrl}}"></image>
+      <view class="username">{{post.author.nickName}}</view>
     </view>
     <view catchtap="more" class="like {{isShow?'likeing':'origi'}}">
       <text class="iconfont icon-flower flower"></text>
-      <text class="likenum">{{post.like}}</text>
+      <text class="likenum">{{post.likenum}}</text>
     </view>
   </view>
 </view>
