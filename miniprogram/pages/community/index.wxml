@@ -13,26 +13,6 @@
             <view class="username">哈哈哈哈哈</view>
             <view class="followY">已关注</view>
           </view>
-          <view class="user-item">
-            <image src="../../images/home/news/news_001.jpg"></image>
-            <view class="username">哈哈哈哈哈</view>
-            <view class="follow">关注</view>
-          </view>
-          <view class="user-item">
-            <image src="../../images/home/news/news_001.jpg"></image>
-            <view class="username">哈哈哈哈哈</view>
-            <view class="follow">关注</view>
-          </view>
-          <view class="user-item">
-            <image src="../../images/home/news/news_001.jpg"></image>
-            <view class="username">哈哈哈哈哈</view>
-            <view class="follow">关注</view>
-          </view>
-          <view class="user-item">
-            <image src="../../images/home/news/news_001.jpg"></image>
-            <view class="username">哈哈哈哈哈</view>
-            <view class="follow">关注</view>
-          </view>
         </view>
       </view>
     </scroll-view>

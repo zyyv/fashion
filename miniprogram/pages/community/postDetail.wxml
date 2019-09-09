@@ -1,0 +1,6 @@
+<!--pages/community/postDetail.wxml-->
+<swiper class="swipe_container" bindchange="bindchange" style="height:{{imgheights[current]}}rpx;">
+  <swiper-item wx:for="{{post.files}}" wx:key="{{index}}">
+    <image src="{{item}}" mode="aspectFit" bindload="imageLoad" class="itemimage" style="height:{{imgheights[current]}}rpx;width:{{imgwidth}}rpx;" />
+  </swiper-item>
+</swiper>

@@ -18,6 +18,7 @@
     "pages/community/release",
     "pages/community/talk",
     "pages/community/location",
+    "pages/community/postDetail",
     "pages/mine/mine"
   ],
   "permission": {

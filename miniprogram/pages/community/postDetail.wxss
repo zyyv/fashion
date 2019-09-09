@@ -1,0 +1,7 @@
+/* pages/community/postDetail.wxss */
+.swipe_container{
+  width: 100%;
+}
+.itemimage{
+  width: 100%;
+}

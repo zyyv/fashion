@@ -10,14 +10,7 @@ Component({
   properties: {
     post: {
       type: Object,
-      value: {
-        src: 'https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/404.gif?sign=3dc24b5d7b8f0022d9d7970127f7c395&t=1567131183',
-        title: 'sorry,this is a error',
-        userface: 'https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/404.gif?sign=3dc24b5d7b8f0022d9d7970127f7c395&t=1567131183',
-        username: 'error',
-        islike: true, //是否能点赞
-        like: 0
-      }
+      value: {}
     },
   },
 
@@ -36,7 +29,7 @@ Component({
   methods: {
     more() {
       if (this.data.post.islike) {
-        this.data.post.like++;
+        this.data.post.likenum++;
         this.data.post.islike = false;
         this.setData({
           isShow: true,
@@ -44,6 +37,10 @@ Component({
         })
       }
     },
-
+    detail() {
+      wx.navigateTo({
+        url: `/pages/community/postDetail?_id=${this.data.post._id}`,
+      })
+    }
   }
 })
