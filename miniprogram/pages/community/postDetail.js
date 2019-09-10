@@ -1,4 +1,5 @@
 // pages/community/postDetail.js
+const db = wx.cloud.database()
 Page({
 
   /**
@@ -6,11 +7,16 @@ Page({
    */
   data: {
     postId: '',
-    post: null,
-    widWidth: 0,
-    imgwidth: 750,
+    post: null,//帖子
+    postTime: '14:01',//帖子时间
+    imgwidth: 750,//
     imgheights: [],
-    current: 0
+    current: 0, //轮播的索引
+    followPosts: [],
+    reply_bottom: 0,
+    domHeight: 0,
+    isBottom: true,
+    phoneInfo:{}
   },
 
   /**
@@ -22,6 +28,42 @@ Page({
       postId: options._id
     })
     this.getPost()
+    this.loadAllPosts()
+
+    this.getPhoneInfo()
+  },
+  getPhoneInfo(){
+    wx.getSystemInfo({
+      success: function(res) {
+        console.log(res)
+      },
+    })
+  },
+  getPostHeight() {
+    let that = this
+    const query = wx.createSelectorQuery()
+    query.select('#head').fields({
+      id: true,
+      size: true
+    }, res => {
+      // console.log(res)
+      that.setData({
+        domHeight: res.height
+      })
+    }).exec()
+  },
+  loadAllPosts() {
+    let that = this
+    db.collection('posts')
+      .get({
+        success: function(res) {
+          // res.data 是包含以上定义的两条记录的数组
+          console.log(res.data)
+          that.setData({
+            followPosts: res.data
+          })
+        }
+      })
   },
   imageLoad: function(e) {
     //获取图片真实宽度
@@ -103,5 +145,19 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+  onPageScroll(e) {
+    if (this.data.isBottom) {
+      this.getPostHeight()
+    }
+    if (e.scrollTop > this.data.domHeight) {
+      this.setData({
+        reply_bottom: -100
+      })
+    } else {
+      this.setData({
+        reply_bottom: 0
+      })
+    }
   }
 })

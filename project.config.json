@@ -97,10 +97,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 7,
 					"name": "帖子详情",
 					"pathName": "pages/community/postDetail",
-					"query": "_id= 5d262bd45d74e2f2158bbe5d24b58d92",
+					"query": "_id= '5d262bd45d74e2f2158bbe5d24b58d92'",
 					"scene": null
 				}
 			]

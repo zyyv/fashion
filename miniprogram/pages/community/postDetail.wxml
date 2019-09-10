@@ -1,6 +1,77 @@
-<!--pages/community/postDetail.wxml-->
-<swiper class="swipe_container" bindchange="bindchange" style="height:{{imgheights[current]}}rpx;">
-  <swiper-item wx:for="{{post.files}}" wx:key="{{index}}">
-    <image src="{{item}}" mode="aspectFit" bindload="imageLoad" class="itemimage" style="height:{{imgheights[current]}}rpx;width:{{imgwidth}}rpx;" />
-  </swiper-item>
-</swiper>
+<view class="header-con" id="head">
+  <view class="head-box">
+    <block wx:if="{{post.files.length != 1}}">
+      <swiper class="swipe_container" bindchange="bindchange">
+        <swiper-item wx:for="{{post.files}}" wx:key="{{index}}">
+          <image src="{{item}}" mode="aspectFit" class="itemimage" />
+        </swiper-item>
+      </swiper>
+      <view class="clots">{{current+1}} / {{post.files.length}}</view>
+    </block>
+    <image wx:else src="{{post.files[0]}}" bindload="imageLoad" mode="aspectFit" style="width:100%;height:{{imgheights[current]}}rpx;"></image>
+  </view>
+  <view class="content">
+    <text class="article">{{post.content}}</text>
+  </view>
+  <view class="talk-box">
+    <view class="talk-con">
+      <text class="iconfont icon-talk talk"></text>
+      <text class="talkTxt">{{post.talkTxt}}</text>
+    </view>
+    <view class="location-con">
+      <text class="iconfont icon-location location"></text>
+      <text class="locationTxt">{{post.locationTxt}}</text>
+    </view>
+  </view>
+  <view class="time-box">
+    <view class="timeinfo">
+      <text class="time">{{postTime}}</text>
+      <text class="iconfont icon-more delete"></text>
+    </view>
+  </view>
+  <view class="comment">
+    <view class="noComment">
+      <image mode="widthFix" class="no-community" src="../../images/community/no-community.png"></image>
+      <text class="pl">暂无评论，快来激扬文字吧···</text>
+    </view>
+
+  </view>
+</view>
+<view class="footer">
+  <view class="optimization">
+    <text class="iconfont icon-shuxian" style="font-weight:700;font-size:30rpx;"></text>
+    <text>推荐阅读</text>
+  </view>
+  <view class="contentPost">
+    <view class="left">
+      <block wx:for="{{followPosts}}" wx:for-item="post" wx:key="{{post.postid}}">
+        <post post="{{post}}" wx:if="{{index%2==0}}"></post>
+      </block>
+    </view>
+    <view class="right">
+      <block wx:for="{{followPosts}}" wx:for-item="post" wx:key="{{post.postid}}">
+        <post post="{{post}}" wx:if="{{index%2==1}}"></post>
+      </block>
+    </view>
+  </view>
+</view>
+<view class="reply" style="bottom:{{reply_bottom}}rpx">
+  <input disabled placeholder="发表评论···"></input>
+  <view class="btns">
+    <view class="iconBtn">
+      <text class="iconfont icon-flower ssb"></text>
+      <view class="iconNum">1.2w</view>
+    </view>
+    <view class="iconBtn">
+      <text style="font-size:44rpx" class="iconfont icon-collect"></text>
+      <view class="iconNum">1.2w</view>
+    </view>
+    <view class="iconBtn">
+      <text style="font-size:48rpx;color:#009966" class="iconfont icon-btn-share ssb"></text>
+      <!-- <text class="iconNum">1.2w</text> -->
+    </view>
+  </view>
+</view>
+<view class="mask">
+
+</view>
