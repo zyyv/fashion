@@ -1,4 +1,4 @@
-<van-tabs color="#373737" animated sticky>
+<van-tabs active="{{ tabsActive }}" bind:change="onTabsChange" swipeable color="#373737" animated sticky>
   <van-tab title="关注">
     <scroll-view scroll-x="{{true}}">
       <view class="recommendBox">

@@ -190,14 +190,24 @@ Page {
   position: relative;
   text-align: center;
   line-height: 100rpx;
-  color: #777;
+  /* color: #777; */
 }
-.iconBtn .ssb{
+
+.iconBtn .ssb {
   font-size: 52rpx;
 }
-.iconBtn .iconNum{
+
+.iconBtn .iconNum {
   font-size: 22rpx;
   position: absolute;
   top: -23rpx;
   left: 70rpx;
+  color: #777;
+}
+
+.iconBtn .openTypeShare {
+  width: 100%;
+  height: 100%;
+  line-height: 100rpx;
+  background: none;
 }

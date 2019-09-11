@@ -8,7 +8,7 @@
       <image src="{{post.author.avatarUrl}}"></image>
       <view class="username">{{post.author.nickName}}</view>
     </view>
-    <view catchtap="more" class="like {{isShow?'likeing':'origi'}}">
+    <view catchtap="more" class="like {{post.alreadyLike?'likeing':'origi'}}">
       <text class="iconfont icon-flower flower"></text>
       <text class="likenum">{{post.likenum}}</text>
     </view>

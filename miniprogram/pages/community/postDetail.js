@@ -1,5 +1,6 @@
 // pages/community/postDetail.js
 const db = wx.cloud.database()
+const app = getApp()
 Page({
 
   /**
@@ -7,16 +8,16 @@ Page({
    */
   data: {
     postId: '',
-    post: null,//帖子
-    postTime: '14:01',//帖子时间
-    imgwidth: 750,//
+    post: null, //帖子
+    postTime: '14:01', //帖子时间
+    imgwidth: 750, //
     imgheights: [],
     current: 0, //轮播的索引
     followPosts: [],
     reply_bottom: 0,
     domHeight: 0,
     isBottom: true,
-    phoneInfo:{}
+    phoneInfo: {}
   },
 
   /**
@@ -32,7 +33,7 @@ Page({
 
     this.getPhoneInfo()
   },
-  getPhoneInfo(){
+  getPhoneInfo() {
     wx.getSystemInfo({
       success: function(res) {
         console.log(res)
@@ -96,12 +97,33 @@ Page({
   },
   getPost() {
     let that = this
-    let db = wx.cloud.database();
     db.collection('posts').doc(this.data.postId).get().then(res => {
       // res.data 包含该记录的数据
       console.log(res.data)
+      let post = res.data
+      if (app.isLogin()) {
+        let userId = app.getUser()._id;
+        if (post.likesArr.indexOf(userId) != -1) {
+          //这个帖子用户已经点赞
+          post.alreadyLike = true
+        } else {
+          //未点赞
+          post.alreadyLike = false
+        }
+        if (post.collectArr.indexOf(userId) != -1) {
+          //这个帖子用户已经收藏
+          post.alreadyCollect = true
+        } else {
+          //未收藏
+          post.alreadyCollect = false
+        }
+      } else {
+        //如果用户未登录
+        post.alreadyLike = false
+        post.alreadyCollect = false
+      }
       that.setData({
-        post: res.data
+        post: post
       })
     })
   },
@@ -139,7 +161,94 @@ Page({
   onReachBottom: function() {
 
   },
-
+  like() {
+    let that = this
+    if (app.isLogin()) {
+      let userid = app.getUser()._id;
+      let _ = db.command
+      if (that.data.post.alreadyLike) {
+        //取消点赞
+        let post = that.data.post
+        post.alreadyLike = false
+        post.likenum--;
+        that.setData({
+          post: post
+        })
+        let arrLike = post.likesArr
+        let index = arrLike.indexOf(userid)
+        arrLike.splice(index, 1)
+        db.collection('posts').doc(that.data.postId).update({
+          data: {
+            likenum: _.inc(-1),
+            likesArr: arrLike
+          },
+          success: function(res) {
+            console.log(res)
+          }
+        })
+      } else {
+        //增加点赞
+        let post = that.data.post
+        post.alreadyLike = true
+        post.likenum++;
+        that.setData({
+          post: post
+        })
+        db.collection('posts').doc(that.data.postId).update({
+          data: {
+            likenum: _.inc(1),
+            likesArr: _.push(userid)
+          }
+        })
+      }
+    } else {
+      console.log('请登录')
+    }
+  },
+  collect() {
+    let that = this
+    if (app.isLogin()) {
+      let userid = app.getUser()._id;
+      let _ = db.command
+      if (that.data.post.alreadyCollect) {
+        //取消收藏
+        let post = that.data.post
+        post.alreadyCollect = false
+        post.collectnum--;
+        that.setData({
+          post: post
+        })
+        let arrCollect = post.collectArr
+        let index = arrCollect.indexOf(userid)
+        arrCollect.splice(index, 1)
+        db.collection('posts').doc(that.data.postId).update({
+          data: {
+            collectnum: _.inc(-1),
+            collectArr: arrCollect
+          },
+          success: function(res) {
+            console.log(res)
+          }
+        })
+      } else {
+        //增加点赞
+        let post = that.data.post
+        post.alreadyCollect = true
+        post.collectnum++;
+        that.setData({
+          post: post
+        })
+        db.collection('posts').doc(that.data.postId).update({
+          data: {
+            collectnum: _.inc(1),
+            collectArr: _.push(userid)
+          }
+        })
+      }
+    } else {
+      console.log('请登录')
+    }
+  },
   /**
    * 用户点击右上角分享
    */

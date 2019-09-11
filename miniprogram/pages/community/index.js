@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    tabsActive: 0,
     fabu: {
       right: 0,
       opacity: 1
@@ -27,7 +28,12 @@ Page({
   onLoad: function(options) {
     getApp().setWatcher(this);
   },
-
+  onTabsChange(event) {
+    // console.log(event)
+    this.setData({
+      tabsActive: event.detail.index
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -40,10 +46,40 @@ Page({
       .get({
         success: function(res) {
           // res.data 是包含以上定义的两条记录的数组
-          console.log(res.data)
+          // res.data.forEach(ele => {
+          // ele.islike = true 
+          // ele.isshow = false
+          // })
+          let posts = res.data
+          if (app.isLogin()) {
+            let userId = app.getUser()._id;
+            posts.forEach(ele => {
+              if (ele.likesArr.indexOf(userId) != -1) {
+                //这个帖子用户已经点赞
+                ele.alreadyLike = true
+              } else {
+                //未点赞
+                ele.alreadyLike = false
+              }
+              if (ele.collectArr.indexOf(userId) != -1) {
+                //这个帖子用户已经收藏
+                ele.alreadyCollect = true
+              } else {
+                //未收藏
+                ele.alreadyCollect = false
+              }
+            })
+          } else {
+            //如果用户未登录
+            posts.forEach(ele => {
+              ele.alreadyLike = false
+              ele.alreadyCollect = false
+            })
+          }
           that.setData({
-            followPosts: res.data
+            followPosts: posts
           })
+          console.log(that.data.followPosts)
         }
       })
   },
@@ -56,13 +92,22 @@ Page({
   getUserInfo(event) {
     console.log(event)
     let res = event.detail;
+    let userInfo = res.userInfo
     if (res.errMsg.indexOf('ok') != -1) {
-      wx.setStorageSync("user", res);
-      wx.setStorageSync("userInfo", res.userInfo);
-      app.globalData.userInfo = res.userInfo;
-      wx.navigateTo({
-        url: '/pages/community/release',
-      })
+      // wx.setStorageSync("user", res);
+      db.collection('users').add({
+          // data 字段表示需新增的 JSON 数据
+          data: userInfo
+        })
+        .then(response => {
+          console.log(response)
+          userInfo._id = response._id
+          wx.setStorageSync("userInfo", userInfo);
+          app.globalData.userInfo = userInfo;
+          wx.navigateTo({
+            url: '/pages/community/release',
+          })
+        })
     }
   },
   closeDialog() {

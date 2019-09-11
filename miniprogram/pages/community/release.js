@@ -39,8 +39,12 @@ Page({
       talkTxt: this.data.talkTxt, //话题
       author: app.getUser(), //作者
       time: new Date().getTime(), //发布时间
-      likenum: 0, //点赞默认0
-      islike: true, //是否能点赞
+      likenum: 0, //点赞数默认0
+      collectnum: 0, //收藏数默认0
+      likesArr: [], //点赞的人
+      collectArr: [] //收藏的人
+      // islike: true, //是否能点赞
+      // isShow: false //是否变红色
     }
     console.log(params)
     db.collection('posts').add({

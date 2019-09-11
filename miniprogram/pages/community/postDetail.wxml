@@ -59,16 +59,17 @@
   <input disabled placeholder="发表评论···"></input>
   <view class="btns">
     <view class="iconBtn">
-      <text class="iconfont icon-flower ssb"></text>
-      <view class="iconNum">1.2w</view>
+      <text bindtap="like" style="color:{{post.alreadyLike?'#c22a2c':'#777'}}" class="iconfont icon-flower ssb"></text>
+      <view class="iconNum">{{post.likenum}}</view>
     </view>
     <view class="iconBtn">
-      <text style="font-size:44rpx" class="iconfont icon-collect"></text>
-      <view class="iconNum">1.2w</view>
+      <text bindtap="collect" style="font-size:44rpx;color:{{post.alreadyCollect?'#c22a2c':'#777'}}" class="iconfont icon-collect"></text>
+      <view class="iconNum">{{post.collectnum}}</view>
     </view>
     <view class="iconBtn">
-      <text style="font-size:48rpx;color:#009966" class="iconfont icon-btn-share ssb"></text>
-      <!-- <text class="iconNum">1.2w</text> -->
+      <button class="openTypeShare" open-type="share">
+        <text style="font-size:48rpx;color:#009966" class="iconfont icon-btn-share ssb"></text>
+      </button>
     </view>
   </view>
 </view>
