@@ -1,0 +1,22 @@
+<!--pages/login/index.wxml-->
+<!-- <view class="flex-h flex-h flex-vc container">
+  <view style="text-align: center; width: 100%; height: 100%;">
+    <view class="f0">
+      <image class="logo" mode="widthFix" src="https://qiniu-apps.zoombin.com/ubuy_logo.jpeg"></image>
+    </view>
+    <button class="login-btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="getUserInfo">微信授权登录</button>
+    <button class="back-btn" bindtap="goBack">取消登录</button>
+  </view>
+</view> -->
+<view class="content">
+  <view class="app-img">
+    <image class="logo" src="https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/head_2.JPG?sign=d56a8d85f339424d0a722f5d196ce326&t=1568376052"></image>
+  </view>
+  <view class="title">
+    小程序需要登录
+    <text style="color:#509ef0">(๑• . •๑)</text> 才能解锁更多彩蛋···
+  </view>
+  <button class="login-btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="getUserInfo">
+    <text class="iconfont icon-wx" style="font-size: 34rpx;"></text> 微信授权登录</button>
+  <button class="back-btn" bindtap="goBack">取消登录</button>
+</view>

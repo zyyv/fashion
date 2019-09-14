@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "post": "../../components/post/post"
+    "post": "../../components/post/post",
+    "van-popup": "../../libray/dist/popup",
+    "van-toast": "../../libray/dist/toast/index"
   }
 }

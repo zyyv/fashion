@@ -19,7 +19,8 @@
     "pages/community/talk",
     "pages/community/location",
     "pages/community/postDetail",
-    "pages/mine/mine"
+    "pages/mine/mine",
+    "pages/login/index"
   ],
   "permission": {
     "scope.userLocation": {

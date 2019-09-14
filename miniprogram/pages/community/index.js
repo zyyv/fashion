@@ -159,8 +159,8 @@ Page({
         url: '/pages/community/release',
       })
     } else {
-      this.setData({
-        loginShow: true
+      wx.navigateTo({
+        url: '/pages/login/index',
       })
     }
   },

@@ -1,13 +1,13 @@
 /**app.wxss**/
 
 @font-face {
-  font-family: 'iconfont';  /* project id 1293799 */
-  src: url('//at.alicdn.com/t/font_1293799_ce2y6kd2u5.eot');
-  src: url('//at.alicdn.com/t/font_1293799_ce2y6kd2u5.eot?#iefix') format('embedded-opentype'),
-  url('//at.alicdn.com/t/font_1293799_ce2y6kd2u5.woff2') format('woff2'),
-  url('//at.alicdn.com/t/font_1293799_ce2y6kd2u5.woff') format('woff'),
-  url('//at.alicdn.com/t/font_1293799_ce2y6kd2u5.ttf') format('truetype'),
-  url('//at.alicdn.com/t/font_1293799_ce2y6kd2u5.svg#iconfont') format('svg');
+  font-family: 'iconfont'; /* project id 1293799 */
+  src: url('//at.alicdn.com/t/font_1293799_azezgx8ye85.eot');
+  src: url('//at.alicdn.com/t/font_1293799_azezgx8ye85.eot?#iefix') format('embedded-opentype'),
+         url('//at.alicdn.com/t/font_1293799_azezgx8ye85.woff2') format('woff2'),
+         url('//at.alicdn.com/t/font_1293799_azezgx8ye85.woff') format('woff'),
+         url('//at.alicdn.com/t/font_1293799_azezgx8ye85.ttf') format('truetype'),
+         url('//at.alicdn.com/t/font_1293799_azezgx8ye85.svg#iconfont') format('svg');
 }
 
 .iconfont {
@@ -18,10 +18,28 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* login */
+.icon-wx::before {
+  content: "\e636";
+}
 /* 社区 */
+
+.icon-btn-edit::before {
+  content: "\e609";
+}
+
+.icon-btn-report::before {
+  content: "\e6d0";
+}
+
+.icon-btn-delete::before {
+  content: "\e613";
+}
+
 .icon-btn-share::before {
   content: "\e614";
 }
+
 .icon-collect::before {
   content: "\e670";
 }
@@ -217,6 +235,7 @@ page {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
 }
 
 .userinfo, .uploader, .tunnel {
@@ -402,4 +421,8 @@ page {
 
 .fff {
   background-color: #fff;
+}
+
+.blue {
+  color: #6393dc;
 }

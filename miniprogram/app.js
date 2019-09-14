@@ -1,6 +1,7 @@
 //app.js
 
 const watch = require("./utils/watch.js");
+const _db = require('./utils/db.js')
 App({
   onLaunch: function() {
     if (!wx.cloud) {
@@ -21,89 +22,65 @@ App({
     var user = wx.getStorageSync('userInfo')
     return user ? true : false
   },
-  getUser(){
+  getUser() {
     var user = wx.getStorageSync('userInfo')
     return user
+  },
+  async getUserInfo(e, cb) {
+    try {
+      var that = this
+      if (!this.isLogin()) {
+        let res = await that.login()
+        // console.log(res)
+        // console.log(e)
+        let openid = res.data.openid,
+          session_key = res.data.session_key;
+        let db_user = await _db.default.queryToUser(openid) //数据库查出来的user
+        console.log(db_user)
+        if (db_user.data.length != 0) { //如果存在user
+          let u = db_user.data[0]
+          wx.setStorageSync('userInfo', u)
+          that.globalData.userInfo = u
+          typeof cb == "function" && cb(u)
+          // return db_user
+        } else {
+          let u = e.detail.userInfo;
+          u.openid = openid
+          wx.setStorageSync('userInfo', u)
+          that.globalData.userInfo = u
+          _db.default.insertToUser(u)
+          typeof cb == "function" && cb(u)
+        }
+      }
+    } catch (e) {
+      console.log(e)
+    }
   },
   login: function() {
     let that = this
     let config = {
       loginWXUrl: 'https://api.weixin.qq.com/sns/jscode2session'
     }
-    wx.login({
-      success: function(res) {
-        wx.getSetting({
-          success(setRes) {
-            // 判断是否已授权  
-            // debugger
-            if (!setRes.authSetting['scope.userInfo']) {
-              // 授权访问  
-              // console.log(1)
-              wx.authorize({
-                scope: 'scope.userInfo',
-                success() {
-                  //获取用户信息
-                  wx.getUserInfo({
-                    lang: "zh_CN",
-                    success: function(userRes) {
-                      //发起网络请求  
-                      wx.request({
-                        url: config.loginWXUrl,
-                        data: {
-                          code: res.code,
-                          encryptedData: userRes.encryptedData,
-                          iv: userRes.iv
-                        },
-                        header: {
-                          "Content-Type": "application/x-www-form-urlencoded"
-                        },
-                        method: 'POST',
-                        //服务端的回掉  
-                        success: function(result) {
-                          var data = result.data.result;
-                          data.expireTime = nowDate + EXPIRETIME;
-                          wx.setStorageSync("userInfo", data);
-                          this.globalData.userInfo = data;
-                        }
-                      })
-                    }
-                  })
-                },
-                fail(){
-                  console.log('error')
-                }
-              })
-            } else {
-              //获取用户信息  
-              wx.getUserInfo({
-                lang: "zh_CN",
-                success: function(userRes) {
-                  //发起网络请求  
-                  wx.request({
-                    url: config.loginWXUrl,
-                    data: {
-                      code: res.code,
-                      encryptedData: userRes.encryptedData,
-                      iv: userRes.iv
-                    },
-                    header: {
-                      "Content-Type": "application/x-www-form-urlencoded"
-                    },
-                    method: 'POST',
-                    success: function(result) {
-                      var data = result.data.result;
-                      data.expireTime = nowDate + EXPIRETIME;
-                      wx.setStorageSync("userInfo", data);
-                      this.globalData.userInfo = data;
-                    }
-                  })
-                }
-              })
+    return new Promise(function(resolve, reject) {
+      wx.login({
+        success: function(res) {
+          wx.request({
+            url: config.loginWXUrl,
+            data: {
+              appid: that.globalData.appId,
+              secret: that.globalData.secret,
+              js_code: res.code,
+              grant_type: 'authorization_code'
+            },
+            success: function(res) {
+              resolve(res)
             }
-          }
-        })
-      }
+          })
+        }
+      })
     })
+
+
   },
   getUserId: function() {
     if (this.isLogin()) {
@@ -112,6 +89,8 @@ App({
     return null
   },
   globalData: {
-    userInfo: null
+    // userInfo: null,
+    appId: 'wx70d49114809ab0c1',
+    secret: '1c44334068a63d72a56b156d928f586b'
   }
 })

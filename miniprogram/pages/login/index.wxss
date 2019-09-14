@@ -1,0 +1,41 @@
+/* pages/login/index.wxss */
+
+.content {
+  margin-top: 150rpx;
+  text-align: center;
+}
+
+.app-img {
+  font-size: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.app-img image {
+  width: 300rpx;
+  height: 300rpx;
+}
+
+.login-btn, .back-btn {
+  width: 500rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+}
+
+.login-btn {
+  background: #00b26a;
+  color: white;
+  margin-top: 110rpx;
+}
+
+.back-btn {
+  background: #dd4f43;
+  color: white;
+  margin-top: 50rpx;
+}
+
+.title {
+  margin-top: 70rpx;
+  font-size: 30rpx;
+}

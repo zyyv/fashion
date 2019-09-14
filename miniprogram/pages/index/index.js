@@ -11,12 +11,13 @@ Page({
   },
 
   onLoad: function() {
-    if (!wx.cloud) {
-      wx.redirectTo({
-        url: '../chooseLib/chooseLib',
-      })
-      return
-    }
+    // if (!wx.cloud) {
+    //   wx.redirectTo({
+    //     url: '../chooseLib/chooseLib',
+    //   })
+    //   return
+    // }
+    // app.login()
 
     // 获取用户信息
     wx.getSetting({
@@ -48,32 +49,32 @@ Page({
 
   onGetOpenid: function() {
     // debugger
-    wx.switchTab({
-      url: '../home/home',
-      success: function(res) {console.log('success')},
-      fail: function(res) {console.log('error')},
-      complete: function(res) {},
-    })
-    // 调用云函数
-    // wx.cloud.callFunction({
-    //   name: 'login',
-    //   data: {},
-    //   success: res => {
-    //     console.log('[云函数] [login] user openid: ', res.result.openid)
-    //     app.globalData.openid = res.result.openid
-    //     wx.navigateTo({
-    //       // url: '../userConsole/userConsole',
-    //       url: 'pages/home/home',
-    //     })
-    //   },
-    //   fail: err => {
-    //     console.error('[云函数] [login] 调用失败', err)
-    //     wx.navigateTo({
-    //       // url: '../deployFunctions/deployFunctions',
-    //       url: '../home/home',
-    //     })
-    //   }
+    // wx.switchTab({
+    //   url: '../home/home',
+    //   success: function(res) {console.log('success')},
+    //   fail: function(res) {console.log('error')},
+    //   complete: function(res) {},
     // })
+    // 调用云函数
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        console.log('[云函数] [login] user openid: ', res.result.openid)
+        app.globalData.openid = res.result.openid
+        wx.navigateTo({
+          url: '../userConsole/userConsole',
+          // url: 'pages/home/home',
+        })
+      },
+      fail: err => {
+        console.error('[云函数] [login] 调用失败', err)
+        wx.navigateTo({
+          url: '../deployFunctions/deployFunctions',
+          // url: '../home/home',
+        })
+      }
+    })
   },
 
   // 上传图片

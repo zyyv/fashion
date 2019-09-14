@@ -25,18 +25,47 @@
   </view>
   <view class="time-box">
     <view class="timeinfo">
-      <text class="time">{{postTime}}</text>
-      <text class="iconfont icon-more delete"></text>
+      <text class="time">{{post.postTime}}</text>
+      <text bindtap="menusShow" class="iconfont icon-more delete"></text>
     </view>
   </view>
+  <!-- 评论区 -->
   <view class="comment">
-    <view class="noComment">
+    <!-- 没有评论 -->
+    <view wx:if="{{post.reply.length == 0}}" bindtap="showReply" class="noComment">
       <image mode="widthFix" class="no-community" src="../../images/community/no-community.png"></image>
       <text class="pl">暂无评论，快来激扬文字吧···</text>
     </view>
-
+    <!-- 显示评论 -->
+    <view wx:else>
+      <view class="total">共{{post.reply.length}}条评论</view>
+      <!-- <block wx:if="{{}}">
+      
+      </block> -->
+      <view class="reply-item" wx:for="{{post.reply}}" wx:for-item="replyItem" wx:key="{{index}}">
+        <view class="reply-user">
+          <image src="{{replyItem.replyUser.avatarUrl}}"></image>
+          <view class="reply-userInfo">
+            <label class="reply-username">{{replyItem.replyUser.nickName}}</label>
+            <view class="reply-time">{{replyItem.time}}</view>
+          </view>
+          <text class="iconfont icon-flower reply-like"></text>
+        </view>
+        <view class="reply-con">
+          <view class="reply-con-article">{{replyItem.desc}}</view>
+          <block wx:if="{{replyItem.reply.length != 0}}">
+            <view class="reply-con-reply">
+              <text style="color: #f05071;">能不能烦我一次牌 </text>回复
+              <text class="blue reply-con-reply-username-now">@人生如此美好呀：</text>
+              <text class="reply-con-reply-article">哈哈哈，由不得他</text>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
   </view>
 </view>
+<!-- 页脚 帖子推荐 -->
 <view class="footer">
   <view class="optimization">
     <text class="iconfont icon-shuxian" style="font-weight:700;font-size:30rpx;"></text>
@@ -55,8 +84,9 @@
     </view>
   </view>
 </view>
+<!-- 底部发表评论 -->
 <view class="reply" style="bottom:{{reply_bottom}}rpx">
-  <input disabled placeholder="发表评论···"></input>
+  <input bindtap="showReply" disabled placeholder="发表评论···"></input>
   <view class="btns">
     <view class="iconBtn">
       <text bindtap="like" style="color:{{post.alreadyLike?'#c22a2c':'#777'}}" class="iconfont icon-flower ssb"></text>
@@ -73,6 +103,33 @@
     </view>
   </view>
 </view>
-<view class="mask">
-
+<!-- 输入框 -->
+<view wx:if="{{isReply}}" class="mask" style="height:{{phoneInfo.windowHeight * 2}}rpx">
+  <textarea auto-focus="true" auto-height="true" cursor-spacing="100" fixed="true" class="txt" bindblur="blurInput" maxlength="200" bindconfirm="confirmInput" value="{{replyContent}}" placeholder-class="placeholder" placeholder="回复：作者···" />
 </view>
+<!-- 弹出层 -->
+<van-popup show="{{ isMenusShow }}" position="bottom" overlay="{{ true }}" custom-class="popup-class" bind:close="menusClose">
+  <view class="funtions">
+    <view class="funt-item">
+      <view class="icon-bg">
+        <text style="font-size:50rpx;color:#fb7299" class="iconfont icon-btn-report"></text>
+      </view>
+      <text style="color:#fb7299" class="icon-txt">举报</text>
+    </view>
+    <view class="funt-item">
+      <view class="icon-bg">
+        <text style="font-size:50rpx;color:#009966" class="iconfont icon-btn-edit"></text>
+      </view>
+      <text style="color:#009966" class="icon-txt">编辑</text>
+    </view>
+    <view class="funt-item">
+      <view class="icon-bg">
+        <text style="font-size:40rpx;color:#00a1d6" class="iconfont icon-btn-delete"></text>
+      </view>
+      <text style="color:#00a1d6" class="icon-txt">删除</text>
+    </view>
+  </view>
+  <view bindtap="cancelPopup" class="cancel">取消</view>
+</van-popup>
+<!-- 提示 -->
+<van-toast id="van-toast" />

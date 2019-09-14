@@ -42,7 +42,8 @@ Page({
       likenum: 0, //点赞数默认0
       collectnum: 0, //收藏数默认0
       likesArr: [], //点赞的人
-      collectArr: [] //收藏的人
+      collectArr: [], //收藏的人
+      reply:[] //评论
       // islike: true, //是否能点赞
       // isShow: false //是否变红色
     }

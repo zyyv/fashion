@@ -1,6 +1,8 @@
 // pages/community/postDetail.js
 const db = wx.cloud.database()
 const app = getApp()
+import utils from '../../utils/utils.js'
+import Toast from '../../libray/dist/toast/toast.js'
 Page({
 
   /**
@@ -9,7 +11,7 @@ Page({
   data: {
     postId: '',
     post: null, //帖子
-    postTime: '14:01', //帖子时间
+    // postTime: '14:01', //帖子时间
     imgwidth: 750, //
     imgheights: [],
     current: 0, //轮播的索引
@@ -17,7 +19,11 @@ Page({
     reply_bottom: 0,
     domHeight: 0,
     isBottom: true,
-    phoneInfo: {}
+    phoneInfo: {},
+    /* 回复 */
+    isReply: false,
+    replyContent: '', //回复的文字
+    isMenusShow: false,
   },
 
   /**
@@ -30,16 +36,90 @@ Page({
     })
     this.getPost()
     this.loadAllPosts()
-
     this.getPhoneInfo()
   },
+  cancelPopup() {
+    this.setData({
+      isMenusShow: false
+    });
+  },
+  menusShow() {
+    this.setData({
+      isMenusShow: true
+    });
+  },
+  menusClose() {
+    this.setData({
+      isMenusShow: false
+    });
+  },
+  showReply() {
+    this.setData({
+      isReply: true
+    })
+  },
+  /**
+   * 失去焦点，取消显示mask
+   */
+  blurInput(event) {
+    console.log(event.detail)
+    this.setData({
+      isReply: false,
+      replyContent: event.detail.value
+    })
+  },
+  /**
+   * 评论输入完成，往数据库存入数据
+   */
+  confirmInput(event) {
+    console.log(event.detail.value)
+    let replyCon = event.detail.value
+    if (!replyCon) {
+      Toast.fail('你还没有评论呢')
+      return
+    }
+    let that = this,
+      postid = that.data.postId,
+      // replyCon = event.detail.value,
+      user = app.getUser(),
+      nowTime = new Date().getTime(),
+      _ = db.command;
+    let prams = {
+      desc: replyCon, //评论内容，
+      time: nowTime, //评论时间
+      replyUser: user, //评论人
+      likenum: 0,
+      likesArr: [],
+      reply: [] //评论的数组(存在评论里面有评论)
+    };
+    db.collection('posts').doc(postid).update({
+      data: {
+        reply: _.push(prams)
+      },
+      success: function(res) {
+        console.log(res)
+        Toast.success('评论成功')
+        that.setData({
+          isReply: false,
+          replyContent: ''
+        })
+        that.getPost()
+      }
+    })
+  },
+  /** 获取手机信息 */
   getPhoneInfo() {
+    let that = this
     wx.getSystemInfo({
       success: function(res) {
         console.log(res)
+        that.setData({
+          phoneInfo: res
+        })
       },
     })
   },
+  /** 获取帖子的高度 */
   getPostHeight() {
     let that = this
     const query = wx.createSelectorQuery()
@@ -101,6 +181,12 @@ Page({
       // res.data 包含该记录的数据
       console.log(res.data)
       let post = res.data
+      post.postTime = utils.getDateByTime(post.time)
+      if (post.reply.length != 0) {
+        post.reply.forEach(ele=>{
+          ele.time = utils.getDateByTime(ele.time)
+        })
+      }
       if (app.isLogin()) {
         let userId = app.getUser()._id;
         if (post.likesArr.indexOf(userId) != -1) {
