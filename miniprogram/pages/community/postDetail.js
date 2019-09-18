@@ -38,6 +38,17 @@ Page({
     this.loadAllPosts()
     this.getPhoneInfo()
   },
+  previewImg(e) {
+    let srcs = this.data.post.files;
+    let current = e.currentTarget.dataset.src;
+    wx.previewImage({
+      current: current,
+      urls: srcs,
+      // success:function(res){
+      //   console.log(res)
+      // }
+    })
+  },
   cancelPopup() {
     this.setData({
       isMenusShow: false
@@ -54,9 +65,15 @@ Page({
     });
   },
   showReply() {
-    this.setData({
-      isReply: true
-    })
+    if (app.isLogin()) {
+      this.setData({
+        isReply: true
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/login/index',
+      })
+    }
   },
   /**
    * 失去焦点，取消显示mask
@@ -183,7 +200,7 @@ Page({
       let post = res.data
       post.postTime = utils.getDateByTime(post.time)
       if (post.reply.length != 0) {
-        post.reply.forEach(ele=>{
+        post.reply.forEach(ele => {
           ele.time = utils.getDateByTime(ele.time)
         })
       }
@@ -288,7 +305,10 @@ Page({
         })
       }
     } else {
-      console.log('请登录')
+      // console.log('请登录')
+      wx.navigateTo({
+        url: '/pages/login/index',
+      })
     }
   },
   collect() {
@@ -332,14 +352,29 @@ Page({
         })
       }
     } else {
-      console.log('请登录')
+      // console.log('请登录')
+      wx.navigateTo({
+        url: '/pages/login/index',
+      })
     }
   },
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
+    return {
+      title: this.data.post.content,
+      // imageUrl: this.data.post.files[0],
+      path: 'pages/community/postDetail?_id=' + this.data.postId,
+      success: function(res) {
+        wx.showToast({
+          title: '分享成功',
+        })
+      },
+      fail: function(res) {
+        // 转发失败
+      }
+    }
   },
   onPageScroll(e) {
     if (this.data.isBottom) {

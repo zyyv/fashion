@@ -3,12 +3,12 @@
     <block wx:if="{{post.files.length != 1}}">
       <swiper class="swipe_container" bindchange="bindchange">
         <swiper-item wx:for="{{post.files}}" wx:key="{{index}}">
-          <image src="{{item}}" mode="aspectFit" class="itemimage" />
+          <image catchtap="previewImg" data-src="{{item}}" src="{{item}}" mode="aspectFit" class="itemimage" />
         </swiper-item>
       </swiper>
       <view class="clots">{{current+1}} / {{post.files.length}}</view>
     </block>
-    <image wx:else src="{{post.files[0]}}" bindload="imageLoad" mode="aspectFit" style="width:100%;height:{{imgheights[current]}}rpx;"></image>
+    <image catchtap="previewImg" data-src="{{post.files[0]}}" wx:else src="{{post.files[0]}}" bindload="imageLoad" mode="aspectFit" style="width:100%;height:{{imgheights[current]}}rpx;"></image>
   </view>
   <view class="content">
     <text class="article">{{post.content}}</text>

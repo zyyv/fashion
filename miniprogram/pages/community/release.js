@@ -43,7 +43,7 @@ Page({
       collectnum: 0, //收藏数默认0
       likesArr: [], //点赞的人
       collectArr: [], //收藏的人
-      reply:[] //评论
+      reply: [] //评论
       // islike: true, //是否能点赞
       // isShow: false //是否变红色
     }
@@ -103,49 +103,111 @@ Page({
       urls: this.data.files // 需要预览的图片http链接列表
     })
   },
+  // uploadFile(files) {
+  //   // console.log('upload files', files)
+  //   // 文件上传的函数，返回一个promise
+  //   return new Promise((resolve, reject) => {
+  //     wx.showLoading({
+  //       title: '上传中',
+  //     })
+  //     let json = {
+  //       urls: []
+  //     }
+  //     files.tempFilePaths.forEach((ele, i) => {
+  //       let filePath = ele;
+  //       //文件路径
+  //       let cloudPath = `userImgs/my-image_${i}_${new Date().getTime()}${filePath.match(/\.[^.]+?$/)[0]}`;
+  //       wx.cloud.uploadFile({
+  //         cloudPath,
+  //         filePath,
+  //         success: res => {
+  //           console.log('[上传文件] 成功：', res)
+  //           json.urls.push(res.fileID)
+  //           if (i == files.tempFilePaths.length - 1) {
+  //             setTimeout(() => {
+  //               resolve(json)
+  //             }, 500)
+  //           }
+  //         },
+  //         fail: e => {
+  //           console.error('[上传文件] 失败：', e)
+  //           wx.showToast({
+  //             icon: 'none',
+  //             title: '上传失败',
+  //           })
+  //           reject('error')
+  //         },
+  //         complete: () => {
+  //           wx.hideLoading()
+  //         }
+  //       })
+  //     })
+  //   })
+  // },
   uploadFile(files) {
-    // console.log('upload files', files)
+
     // 文件上传的函数，返回一个promise
-    return new Promise((resolve, reject) => {
-      wx.showLoading({
-        title: '上传中',
-      })
-      let json = {
-        urls: []
-      }
-      files.tempFilePaths.forEach((ele, i) => {
-        let filePath = ele;
-        //文件路径
-        let cloudPath = `userImgs/my-image_${i}_${new Date().getTime()}${filePath.match(/\.[^.]+?$/)[0]}`;
-        wx.cloud.uploadFile({
-          cloudPath,
-          filePath,
-          success: res => {
-            console.log('[上传文件] 成功：', res)
-            json.urls.push(res.fileID)
-            if (i == files.tempFilePaths.length - 1) {
-              setTimeout(() => {
-                resolve(json)
-              }, 1000)
-            }
-          },
-          fail: e => {
-            console.error('[上传文件] 失败：', e)
-            wx.showToast({
-              icon: 'none',
-              title: '上传失败',
-            })
-            reject('error')
-          },
-          complete: () => {
-            wx.hideLoading()
-          }
+    try {
+      let that = this
+      console.log('upload files', files)
+      return new Promise((resolve, reject) => {
+        wx.showLoading({
+          title: '上传中',
         })
+        let json = {
+          urls: []
+        }
+        up(files.tempFilePaths, )
+        // files.tempFilePaths.forEach(async(ele, i) => {
+        //   let filePath = ele;
+        //   //文件路径
+        //   let cloudPath = `userImgs/my-image_${i}_${new Date().getTime()}${filePath.match(/\.[^.]+?$/)[0]}`;
+        //   let res = await wx.cloud.uploadFile({
+        //     cloudPath,
+        //     filePath
+        //   })
+        //   json.urls.push(res.fileID)
+        //   console.log(json.urls, i)
+        //   if (i == files.tempFilePaths.length - 1) {
+        //     resolve(json)
+        //     wx.hideLoading()
+        //   }
+        // })
+
+
+
+
+
+
+        // for (let i = 0; i < files.tempFilePaths.length; i++) {
+        //   (async function(j) {
+        //     let filePath = files.tempFilePaths[j];
+        //     //文件路径
+        //     let cloudPath = `userImgs/my-image_${i}_${new Date().getTime()}${filePath.match(/\.[^.]+?$/)[0]}`;
+        //     let res = await wx.cloud.uploadFile({
+        //       cloudPath,
+        //       filePath
+        //     })
+        //     json.urls.push(res.fileID)
+        //     console.log(json.urls, j)
+        //     if (j == files.tempFilePaths.length - 1) {
+        //       resolve(json)
+        //       wx.hideLoading()
+        //     }
+        //   })(i)
+
+        // }
       })
-    })
+
+    } catch (e) {
+      console.log(e)
+    }
+
   },
+
   uploadError(e) {
     console.log('upload error', e.detail)
+    Toast.fail(`第${e.detail.index + 1}图片有点大呢，没法上传`);
   },
   uploadSuccess(e) {
     let files = e.detail.map((ele) => {
@@ -186,3 +248,20 @@ Page({
   }
 
 });
+
+function up(fileArr) {
+  let index = 0
+  let cloudPath = `userImgs/my-image_${i}_${new Date().getTime()}${fileArr[index].match(/\.[^.]+?$/)[0]}`;
+  wx.cloud.uploadFile({
+    cloudPath,
+    filePath,
+    success: function(res) {
+      index++
+      if (index < fileArr.length) { //如果没有循环完
+        up()
+      } else {
+        return
+      }
+    }
+  })
+}

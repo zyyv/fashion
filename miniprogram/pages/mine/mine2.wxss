@@ -1,0 +1,90 @@
+/* pages/mine/mine2.wxss */
+
+page {
+  background-color: #fff;
+}
+.value-class{
+  font-size: 26rpx !important;
+}
+
+.o_header {
+  width: 100%;
+  height: 360rpx;
+  position: relative;
+  background: url("https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/bizhi/7.png?sign=c944dd80080146817f61b6a08ec79122&t=1568602400") no-repeat;
+  background-size: 100% 100%;
+  z-index: 1;
+}
+
+.o_header:after {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: inherit;
+  filter: blur(2rpx);
+  z-index: 2;
+}
+
+.head-content {
+  position: absolute;
+  z-index: 10;
+  width: 100%;
+  /* height: 100%; */
+  top: 34rpx;
+  left: 0;
+  display: flex;
+  padding: 20rpx 30rpx;
+  justify-content: space-around;
+  align-items: center;
+  overflow: hidden;
+}
+
+.fs, .yb, .gz {
+  width: 120rpx;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #efefef;
+}
+
+.num {
+  font-size: 36rpx;
+}
+
+.fs-txt, .yb-txt, .gz-txt {
+  font-size: 24rpx;
+}
+
+.head-content .userimg {
+  width: 170rpx;
+  height: 170rpx;
+  border: 4rpx solid #fff;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.1);
+  font-size: 0;
+}
+
+.userimg image {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  vertical-align: middle;
+}
+.name{
+  position: absolute;
+  left: 0;
+  bottom: 45rpx;
+  z-index: 10;
+  width: 100%;
+  padding: 20rpx 30rpx;
+  text-align: center;
+  font-size: 38rpx;
+  color: #efefef;
+}

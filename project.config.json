@@ -110,6 +110,12 @@
 					"pathName": "pages/login/index",
 					"query": "_id= '5d262bd45d74e2f2158bbe5d24b58d92'",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "我的 2",
+					"pathName": "pages/mine/mine2",
+					"scene": null
 				}
 			]
 		}

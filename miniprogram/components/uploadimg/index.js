@@ -129,7 +129,7 @@ Component({
                 _this.setData({
                   currentFiles: oldFiles
                 });
-                console.log(2, _this.data.currentFiles)
+                // console.log(2, _this.data.currentFiles)
                 _this.triggerEvent('success', _this.data.currentFiles, {});
               } else {
                 _this.triggerEvent('fail', {

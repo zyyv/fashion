@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "van-cell": "../../libray/dist/cell/index"
+  }
+}

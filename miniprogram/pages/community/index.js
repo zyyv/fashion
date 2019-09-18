@@ -8,12 +8,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tabsActive: 0,
+    tabsActive: 1,
     fabu: {
       right: 0,
       opacity: 1
     },
     followPosts: [],
+    talksArr:[],
     state: {
       scrollTop: null,
       scrollIng: null
@@ -83,11 +84,25 @@ Page({
         }
       })
   },
+  loadAllTalks() {
+    let that = this
+    db.collection('talks')
+      .get({
+        success: function(res) {
+          // res.data 是包含以上定义的两条记录的数组
+          console.log(res.data)
+          that.setData({
+            talksArr: res.data
+          })
+        }
+      })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
     this.loadAllPosts()
+    this.loadAllTalks()
   },
   getUserInfo(event) {
     console.log(event)

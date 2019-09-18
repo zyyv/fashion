@@ -31,70 +31,32 @@
   </van-tab>
   <van-tab title="推荐">
     <swiper autoplay="{{true}}" circular="{{true}}">
-      <swiper-item>
-        <view class="superTalk">
-          <view class="talk-item">
-            <image src="https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/imgs/0.jpg?sign=c903b58ab60dca32f9093f57eb1ff2d5&t=1567141320"></image>
-            <view class="talk-info">
-              <view class="info-title">#你好呀</view>
-              <view class="info-desc">晒出你的今日穿搭</view>
+      <block>
+        <swiper-item>
+          <view class="superTalk">
+            <view wx:for="{{talksArr}}" wx:key="{{index}}" wx:if="{{index < 4}}" class="talk-item">
+              <image src="{{item.img}}"></image>
+              <view class="talk-info">
+                <view class="info-title">#{{item.name}}</view>
+                <view class="info-desc">{{item.desc}}</view>
+              </view>
             </view>
           </view>
-          <view class="talk-item">
-            <image src="https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/imgs/0.jpg?sign=c903b58ab60dca32f9093f57eb1ff2d5&t=1567141320"></image>
-            <view class="talk-info">
-              <view class="info-title">#你好呀</view>
-              <view class="info-desc">晒出你的今日穿搭</view>
+        </swiper-item>
+      </block>
+      <block wx:if="{{talksArr.length > 4}}">
+        <swiper-item>
+          <view class="superTalk">
+            <view wx:for="{{talksArr}}" wx:key="{{index}}" wx:if="{{index >= 4 && index <= 7}}" class="talk-item">
+              <image src="{{item.img}}"></image>
+              <view class="talk-info">
+                <view class="info-title">#{{item.name}}</view>
+                <view class="info-desc">{{item.desc}}</view>
+              </view>
             </view>
           </view>
-          <view class="talk-item">
-            <image src="https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/imgs/3.jpg?sign=9e1cd8bba2b322d8e21a3db5ae36a308&t=1567141343"></image>
-            <view class="talk-info">
-              <view class="info-title">#你好呀</view>
-              <view class="info-desc">晒出你的今日穿搭</view>
-            </view>
-          </view>
-          <view class="talk-item">
-            <image src="https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/imgs/1.jpg?sign=c5e154c2af43539fd8db6fea9d9b9669&t=1567141332"></image>
-            <view class="talk-info">
-              <view class="info-title">#你好呀</view>
-              <view class="info-desc">晒出你的今日穿搭</view>
-            </view>
-          </view>
-        </view>
-      </swiper-item>
-      <swiper-item>
-        <view class="superTalk">
-          <view class="talk-item">
-            <image src="https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/imgs/6.jpg?sign=1cfffa3122c34ffa7e5775e68e2267df&t=1567141353"></image>
-            <view class="talk-info">
-              <view class="info-title">#你好呀</view>
-              <view class="info-desc">晒出你的今日穿搭</view>
-            </view>
-          </view>
-          <view class="talk-item">
-            <image src="https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/imgs/7.jpg?sign=9867ab8e3e0b213135da5ed7d96cf9c9&t=1567141364"></image>
-            <view class="talk-info">
-              <view class="info-title">#你好呀</view>
-              <view class="info-desc">晒出你的今日穿搭</view>
-            </view>
-          </view>
-          <view class="talk-item">
-            <image src="https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/imgs/8.jpg?sign=eecc2ce7a494c6e88ec7fe703b3f37f0&t=1567141376"></image>
-            <view class="talk-info">
-              <view class="info-title">#你好呀</view>
-              <view class="info-desc">晒出你的今日穿搭</view>
-            </view>
-          </view>
-          <view class="talk-item">
-            <image src="https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/imgs/9.jpg?sign=92e07b71e512f6997ea2d02f2b2e5e3a&t=1567141390"></image>
-            <view class="talk-info">
-              <view class="info-title">#你好呀</view>
-              <view class="info-desc">晒出你的今日穿搭</view>
-            </view>
-          </view>
-        </view>
-      </swiper-item>
+        </swiper-item>
+      </block>
     </swiper>
     <view class="transparent-line"></view>
     <view class="content">

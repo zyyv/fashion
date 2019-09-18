@@ -1,0 +1,36 @@
+<view class="o_header">
+  <view class="head-content">
+    <view class="userimg">
+      <image src="{{user.avatarUrl}}"></image>
+    </view>
+    <view style="color: #f05071;" class="fs">
+      <label class="num">0</label>
+      <label class="fs-txt">粉丝</label>
+    </view>
+    <view style="color: #efb033;" class="yb">
+      <label class="num">0</label>
+      <label class="yb-txt">硬币</label>
+    </view>
+    <view style="color: #438e8f;" class="gz">
+      <label class="num">0</label>
+      <label class="gz-txt">关注</label>
+    </view>
+  </view>
+  <view class="name">
+    <text>{{user.nickName}}</text>
+  </view>
+</view>
+<view class="o_header">
+</view>
+<view class="gray-line"></view>
+<van-cell title="我的帖子" value-class="value-class" value="我的提问都在这里哦" is-link></van-cell>
+<van-cell title="我赞过的" value-class="value-class" value="" is-link></van-cell>
+<van-cell title="我的关注" value-class="value-class" value="用户、话题" is-link></van-cell>
+<van-cell title="我的收藏" value-class="value-class" value="NEWS、百科、帖子" is-link></van-cell>
+<van-cell title="我的回复" value-class="value-class" value="" is-link></van-cell>
+<view class="gray-line"></view>
+<van-cell title="我的签到" value-class="value-class" value="" is-link></van-cell>
+<van-cell title="硬币商城" value-class="value-class" value="1231" is-link></van-cell>
+<view class="gray-line"></view>
+<van-cell title="意见反馈" value-class="value-class" value="QQ群：1633711653" is-link></van-cell>
+<van-cell title="打赏" value-class="value-class" value="1231" is-link></van-cell>

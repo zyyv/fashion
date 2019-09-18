@@ -54,7 +54,10 @@ Component({
         }
       } else {
         //弹登录框
-        console.log('请登录')
+        // console.log('请登录')
+        wx.navigateTo({
+          url: '/pages/login/index',
+        })
       }
 
     },
