@@ -98,6 +98,7 @@ Component({
             var fileContent = mgr.readFileSync(item);
             return fileContent;
           });
+          // console.log(contents)
           var obj = {
             tempFilePaths: res.tempFilePaths,
             tempFiles: res.tempFiles,

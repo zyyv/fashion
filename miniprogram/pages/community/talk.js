@@ -1,5 +1,5 @@
 // pages/community/talk.js
-const app =getApp()
+const app = getApp()
 Page({
 
   /**
@@ -18,7 +18,6 @@ Page({
   getAllTalks() {
     const db = wx.cloud.database()
     let that = this
-    debugger
     db.collection('talks').orderBy('ishot', 'desc').get({
       success: res => {
         that.setData({
@@ -34,7 +33,7 @@ Page({
         console.error('[数据库] [查询记录] 失败：', err)
       },
       complete: () => {
-        
+
       }
     })
 
