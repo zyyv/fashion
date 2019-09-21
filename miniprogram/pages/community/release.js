@@ -21,7 +21,6 @@ Page({
       count: that.data.maxCount - that.data.files.length,
       success(res) {
         that.uploadFile(res).then(res => {
-          console.log(res, 1)
           let files = that.data.files.concat(res)
           that.setData({
             files

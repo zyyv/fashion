@@ -19,11 +19,13 @@ Page({
     reply_bottom: 0,
     domHeight: 0,
     isBottom: true,
-    phoneInfo: {},
-    /* 回复 */
-    isReply: false,
-    replyContent: '', //回复的文字
+    // phoneInfo: {},
     isMenusShow: false,
+    /* 回复 */
+    replyContent: '', //回复的文字
+    showReply: false,
+    currentFiles: [], //评论图片
+    maxCount: 3,
   },
 
   /**
@@ -36,61 +38,163 @@ Page({
     })
     this.getPost()
     this.loadAllPosts()
-    this.getPhoneInfo()
+    // this.getPhoneInfo()
   },
+  /**
+   * 选择评论图片
+   */
+  chooseImg() {
+    let that = this
+    wx.chooseImage({
+      count: that.data.maxCount - that.data.currentFiles.length,
+      success(res) {
+        that.uploadFile(res).then(res => {
+          let currentFiles = that.data.currentFiles.concat(res)
+          that.setData({
+            currentFiles
+          })
+        })
+      }
+    })
+  },
+  /** 文件上传返回promise */
+  uploadFile(files) {
+    try {
+      let that = this
+      console.log('upload files', files)
+      return new Promise((resolve, reject) => {
+        that.up(files.tempFilePaths, [], resolve)
+      })
+    } catch (e) {
+      console.log(e)
+    }
+  },
+  /** 递归上传 */
+  up(filePaths, fildIds, resolve) {
+    let that = this
+    let len = filePaths.length
+    if (len == 0) {
+      wx.hideLoading()
+      return resolve(fildIds)
+    } else {
+      wx.showLoading({
+        title: '上传中',
+      })
+      let filePath = filePaths[0];
+      //文件路径
+      let cloudPath = `userImgs/my-image-${Math.floor(Math.random() * 10)}-${new Date().getTime()}${filePath.match(/\.[^.]+?$/)[0]}`;
+      wx.cloud.uploadFile({
+        cloudPath,
+        filePath,
+        success: res => {
+          console.log('[上传文件] 成功：', res)
+          fildIds.push(res.fileID)
+          filePaths.shift()
+          that.up(filePaths, fildIds, resolve)
+        },
+        fail: e => {
+          console.error('[上传文件] 失败：', e)
+          wx.showToast({
+            icon: 'none',
+            title: '上传失败',
+          })
+          reject('error')
+        },
+      })
+    }
+  },
+  /***
+   * 举报
+   */
+  report() {
+    if (app.isLogin()) {
+      //点赞
+      Toast.success('举报成功，管理员将尽快处理')
+      this.menusClose()
+    } else {
+      app.goLogin()
+    }
+  },
+  /*** 删除图片 */
+  deleteImage(e) {
+    let src = e.currentTarget.dataset.src
+    let index = e.currentTarget.dataset.index
+    let deleteArr = [src];
+    let files = this.data.files
+    files.splice(index, 1)
+    this.setData({
+      files
+    })
+    wx.cloud.deleteFile({
+      fileList: deleteArr
+    }).then(res => {
+      console.log("删除成功", res.fileList)
+    }).catch(error => {})
+  },
+  /**
+   * 隐藏评论输入框
+   */
+  hiddenReply() {
+    this.setData({
+      showReply: false
+    })
+  },
+
   previewImg(e) {
-    let srcs = this.data.post.files;
+    let srcs = e.currentTarget.dataset.srcs;
     let current = e.currentTarget.dataset.src;
     wx.previewImage({
       current: current,
-      urls: srcs,
-      // success:function(res){
-      //   console.log(res)
-      // }
+      urls: srcs
     })
   },
-  cancelPopup() {
-    this.setData({
-      isMenusShow: false
-    });
-  },
+  /** 显示编辑 举报 弹出层 */
   menusShow() {
     this.setData({
       isMenusShow: true
     });
   },
+  /** 隐藏编辑 举报 弹出层 */
   menusClose() {
     this.setData({
       isMenusShow: false
     });
   },
+  /** 显示回复 */
   showReply() {
     if (app.isLogin()) {
       this.setData({
-        isReply: true
+        showReply: true
       })
     } else {
-      wx.navigateTo({
-        url: '/pages/login/index',
-      })
+      app.goLogin()
     }
   },
-  /**
-   * 失去焦点，取消显示mask
+  /***
+   * 监听键盘输入事件
    */
-  blurInput(event) {
-    console.log(event.detail)
+  replyInput(event) {
+    let replyCon = event.detail.value;
     this.setData({
-      isReply: false,
-      replyContent: event.detail.value
+      replyContent: replyCon
+    })
+  },
+  /***
+   * 删除评论图片
+   */
+  deleteImage(e) {
+    let index = e.currentTarget.dataset.index;
+    let files = this.data.currentFiles;
+    files.splice(index, 1)
+    this.setData({
+      currentFiles: files
     })
   },
   /**
    * 评论输入完成，往数据库存入数据
    */
-  confirmInput(event) {
-    console.log(event.detail.value)
-    let replyCon = event.detail.value
+  createReply() {
+    let replyCon = this.data.replyContent
     if (!replyCon) {
       Toast.fail('你还没有评论呢')
       return
@@ -100,25 +204,28 @@ Page({
       // replyCon = event.detail.value,
       user = app.getUser(),
       nowTime = new Date().getTime(),
+      images = that.data.currentFiles,
       _ = db.command;
-    let prams = {
+    let params = {
       desc: replyCon, //评论内容，
       time: nowTime, //评论时间
       replyUser: user, //评论人
       likenum: 0,
+      images: images,
       likesArr: [],
       reply: [] //评论的数组(存在评论里面有评论)
     };
     db.collection('posts').doc(postid).update({
       data: {
-        reply: _.push(prams)
+        reply: _.push(params)
       },
       success: function(res) {
         console.log(res)
         Toast.success('评论成功')
         that.setData({
-          isReply: false,
-          replyContent: ''
+          showReply: false,
+          replyContent: '',
+          currentFiles: []
         })
         that.getPost()
       }
@@ -180,6 +287,7 @@ Page({
       imgheights: imgheights,
     })
   },
+  /** z展示图片切换 */
   bindchange: function(e) {
     this.setData({
       current: e.detail.current
@@ -192,6 +300,7 @@ Page({
   onReady: function() {
 
   },
+  /** 获取帖子信息 */
   getPost() {
     let that = this
     db.collection('posts').doc(this.data.postId).get().then(res => {
@@ -264,6 +373,7 @@ Page({
   onReachBottom: function() {
 
   },
+  /*** 点赞 */
   like() {
     let that = this
     if (app.isLogin()) {
@@ -311,6 +421,7 @@ Page({
       })
     }
   },
+  /** 收藏 */
   collect() {
     let that = this
     if (app.isLogin()) {
@@ -376,6 +487,7 @@ Page({
       }
     }
   },
+  /** 监听页面滚动 */
   onPageScroll(e) {
     if (this.data.isBottom) {
       this.getPostHeight()

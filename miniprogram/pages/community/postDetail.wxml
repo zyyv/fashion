@@ -3,12 +3,12 @@
     <block wx:if="{{post.files.length != 1}}">
       <swiper class="swipe_container" bindchange="bindchange">
         <swiper-item wx:for="{{post.files}}" wx:key="{{index}}">
-          <image catchtap="previewImg" data-src="{{item}}" src="{{item}}" mode="aspectFit" class="itemimage" />
+          <image catchtap="previewImg" data-src="{{item}}" data-srcs="{{post.files}}" src="{{item}}" mode="aspectFit" class="itemimage" />
         </swiper-item>
       </swiper>
       <view class="clots">{{current+1}} / {{post.files.length}}</view>
     </block>
-    <image catchtap="previewImg" data-src="{{post.files[0]}}" wx:else src="{{post.files[0]}}" bindload="imageLoad" mode="aspectFit" style="width:100%;height:{{imgheights[current]}}rpx;"></image>
+    <image catchtap="previewImg" data-srcs="{{post.files}}" data-src="{{post.files[0]}}" wx:else src="{{post.files[0]}}" bindload="imageLoad" mode="aspectFit" style="width:100%;height:{{imgheights[current]}}rpx;"></image>
   </view>
   <view class="content">
     <text class="article">{{post.content}}</text>
@@ -33,15 +33,12 @@
   <view class="comment">
     <!-- 没有评论 -->
     <view wx:if="{{post.reply.length == 0}}" bindtap="showReply" class="noComment">
-      <image mode="widthFix" class="no-community" src="../../images/community/no-community.png"></image>
-      <text class="pl">暂无评论，快来激扬文字吧···</text>
+      <image mode="aspectFit" class="no-community" src="cloud://garbage-zy-jfq6e.6761-garbage-zy-jfq6e/background/no-words.png"></image>
+      <!-- <text class="pl">暂无评论，快来激扬文字吧···</text> -->
     </view>
     <!-- 显示评论 -->
     <view wx:else>
       <view class="total">共{{post.reply.length}}条评论</view>
-      <!-- <block wx:if="{{}}">
-      
-      </block> -->
       <view class="reply-item" wx:for="{{post.reply}}" wx:for-item="replyItem" wx:key="{{index}}">
         <view class="reply-user">
           <image src="{{replyItem.replyUser.avatarUrl}}"></image>
@@ -53,7 +50,10 @@
         </view>
         <view class="reply-con">
           <view class="reply-con-article">{{replyItem.desc}}</view>
-          <block wx:if="{{replyItem.reply.length != 0}}">
+          <view wx:if="{{replyItem.images.length != 0}}" class="reply-con-images">
+            <image bindtap="previewImg" data-srcs="{{replyItem.images}}" data-src="{{reSrc}}" mode="aspectFill" class="reply-con-image-item" wx:for="{{replyItem.images}}" wx:for-item="reSrc" wx:key="{{index}}" src="{{reSrc}}"></image>
+          </view>
+          <block wx:if="{{replyItem.reply.length == 0}}">
             <view class="reply-con-reply">
               <text style="color: #f05071;">能不能烦我一次牌 </text>回复
               <text class="blue reply-con-reply-username-now">@人生如此美好呀：</text>
@@ -104,14 +104,30 @@
   </view>
 </view>
 <!-- 输入框 -->
-<view wx:if="{{isReply}}" class="mask" style="height:{{phoneInfo.windowHeight * 2}}rpx">
-  <textarea auto-focus="true" auto-height="true" cursor-spacing="100" fixed="true" class="txt" bindblur="blurInput" maxlength="200" bindconfirm="confirmInput" value="{{replyContent}}" placeholder-class="placeholder" placeholder="回复：作者···" />
+<view bindtap="hiddenReply" wx:if="{{showReply}}" class="mask" style="height:100vh">
+  <view style="bottom:0px" class="re">
+    <view wx:if="{{currentFiles.length != 0}}" class="replyImgs">
+      <block wx:for="{{currentFiles}}" wx:key="{{index}}">
+        <view class="re-img-box">
+          <image src="{{item}}" mode="aspectFill" />
+          <view data-index="{{index}}" class="close-box" catchtap="deleteImage">
+            <text class="iconfont icon-close close"></text>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="selectImg">
+      <text catchtap="chooseImg" class="iconfont icon-img"></text>
+      <button catchtap="createReply" class="sendReply">发送</button>
+    </view>
+    <textarea auto-focus="{{true}}" cursor-spacing="35rpx" auto-height="{{true}}" class="txt" maxlength="200" bindinput="replyInput" show-confirm-bar="{{false}}" value="{{replyContent}}" placeholder-class="placeholder" placeholder="评论···" />
+  </view>
 </view>
 <!-- 弹出层 -->
 <van-popup show="{{ isMenusShow }}" position="bottom" overlay="{{ true }}" custom-class="popup-class" bind:close="menusClose">
   <view class="funtions">
     <view class="funt-item">
-      <view class="icon-bg">
+      <view class="icon-bg" catchtap="report">
         <text style="font-size:50rpx;color:#fb7299" class="iconfont icon-btn-report"></text>
       </view>
       <text style="color:#fb7299" class="icon-txt">举报</text>
@@ -129,7 +145,7 @@
       <text style="color:#00a1d6" class="icon-txt">删除</text>
     </view>
   </view>
-  <view bindtap="cancelPopup" class="cancel">取消</view>
+  <view bindtap="menusClose" class="cancel">取消</view>
 </van-popup>
 <!-- 提示 -->
 <van-toast id="van-toast" />

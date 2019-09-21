@@ -117,12 +117,13 @@ Page {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 60rpx;
+  padding-bottom: 20rpx;
   /* justify-content: space-around; */
 }
 
 .noComment .no-community {
-  width: 300rpx;
+  height: 340rpx;
+  width: 340rpx;
 }
 
 .noComment .pl {
@@ -219,7 +220,76 @@ Page {
   left: 0;
   background: rgba(0, 0, 0, 0.5);
   z-index: 10;
-  padding: 0 20rpx;
+  /* padding: 0 20rpx; */
+}
+
+.mask .re {
+  position: absolute;
+  /* bottom: 130rpx; */
+  left: 0;
+  width: 100%;
+  background: #fefefe;
+  border-radius: 10rpx;
+  padding: 10rpx;
+}
+
+.re .replyImgs {
+  position: absolute;
+  /* width: fit-content; */
+  padding: 20rpx;
+  background: #fefefe;
+  top: -178rpx;
+  left: 17rpx;
+  display: flex;
+  border-radius: 10rpx;
+}
+
+.re .replyImgs::after {
+  display: block;
+  content: '';
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: -40rpx;
+  left: 18rpx;
+  border-width: 20rpx;
+  border-style: solid;
+  border-color: #373737 transparent transparent transparent;
+}
+
+.replyImgs .re-img-box {
+  width: 130rpx;
+  height: 130rpx;
+  margin-right: 20rpx;
+  position: relative;
+  overflow: hidden;
+}
+
+.replyImgs .re-img-box:last-child {
+  margin-right: 0rpx;
+}
+
+.re-img-box image {
+  width: 100%;
+  height: 100%;
+}
+
+.re-img-box .close-box {
+  position: absolute;
+  width: 46rpx;
+  height: 46rpx;
+  top: -16rpx;
+  right: -20rpx;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.close-box .close {
+  position: absolute;
+  bottom: 8rpx;
+  left: 8rpx;
+  font-size: 17rpx;
+  color: #fff;
 }
 
 .placeholder {
@@ -229,18 +299,38 @@ Page {
 
 .txt {
   width: 94%;
-  /* height: 100rpx; */
-  max-height: 300rpx;
+  max-height: 200rpx;
   background: #fefefe;
   color: #242528;
   border: 1rpx solid #ccc;
   padding: 10rpx 3%;
   border-radius: 6rpx;
-  /* box-sizing: border-box; */
   font-size: 28rpx;
-  position: fixed;
-  left: 0;
-  bottom: 0;
+}
+
+.mask .selectImg {
+  position: relative;
+  width: 100%;
+  padding: 10rpx 0 10rpx 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* height: 150rpx; */
+}
+
+.selectImg .icon-img {
+  font-size: 46rpx;
+}
+
+.selectImg .sendReply {
+  height: 50rpx;
+  width: 120rpx;
+  line-height: 50rpx;
+  background: #373737;
+  color: #fff;
+  font-size: 26rpx;
+  margin: 0;
+  border-radius: 6rpx;
 }
 
 .popup-class {
@@ -352,15 +442,24 @@ Page {
   font-size: 26rpx;
   color: #4f4f4f;
 }
-.reply-con .reply-con-reply{
+
+.reply-con .reply-con-images {
+  padding-bottom: 16rpx;
+  display: flex;
+}
+
+.reply-con-images .reply-con-image-item {
+  width: 140rpx;
+  height: 140rpx;
+  margin-right: 20rpx;
+}
+
+.reply-con .reply-con-reply {
   padding: 20rpx;
   background: #efefef;
   font-size: 26rpx;
 }
-.reply-con-reply-article{
+
+.reply-con-reply-article {
   color: #4f4f4f;
 }
-
-
-
-
