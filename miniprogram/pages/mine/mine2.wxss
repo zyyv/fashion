@@ -9,7 +9,7 @@ page {
 
 .o_header {
   width: 100%;
-  height: 360rpx;
+  height: 330rpx;
   position: relative;
   background: url("https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/bizhi/7.png?sign=c944dd80080146817f61b6a08ec79122&t=1568602400") no-repeat;
   background-size: 100% 100%;

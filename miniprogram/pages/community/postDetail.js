@@ -264,8 +264,36 @@ Page({
         success: function(res) {
           // res.data 是包含以上定义的两条记录的数组
           console.log(res.data)
+          let posts = res.data.filter(ele=>{
+            return ele._id != that.data.postId
+          })
+          if (app.isLogin()) {
+            let userId = app.getUser()._id;
+            posts.forEach(ele => {
+              if (ele.likesArr.indexOf(userId) != -1) {
+                //这个帖子用户已经点赞
+                ele.alreadyLike = true
+              } else {
+                //未点赞
+                ele.alreadyLike = false
+              }
+              if (ele.collectArr.indexOf(userId) != -1) {
+                //这个帖子用户已经收藏
+                ele.alreadyCollect = true
+              } else {
+                //未收藏
+                ele.alreadyCollect = false
+              }
+            })
+          } else {
+            //如果用户未登录
+            posts.forEach(ele => {
+              ele.alreadyLike = false
+              ele.alreadyCollect = false
+            })
+          }
           that.setData({
-            followPosts: res.data
+            followPosts: posts
           })
         }
       })
