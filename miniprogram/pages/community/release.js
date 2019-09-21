@@ -3,18 +3,36 @@ const app = getApp()
 const db = wx.cloud.database()
 Page({
   data: {
-    files: [],
-    currentTxtLen: 0,
-    maxTxtLen: 200,
-    content: '',
-    locationTxt: '',
-    talkTxt: ''
+    files: [], //图片urls
+    currentTxtLen: 0, //当前输入文字长度
+    maxTxtLen: 200, //文字最大长度
+    content: '', //文字内容
+    locationTxt: '', //位置
+    talkTxt: '', //话题
+    maxCount: 9 //图片最大上传数量
   },
-  onLoad() {
-    this.setData({
-      uploadFile: this.uploadFile.bind(this)
+  onLoad() {},
+  /**
+   * 选择图片
+   */
+  chooseImage() {
+    let that = this
+    wx.chooseImage({
+      count: that.data.maxCount - that.data.files.length,
+      success(res) {
+        that.uploadFile(res).then(res => {
+          console.log(res, 1)
+          let files = that.data.files.concat(res)
+          that.setData({
+            files
+          })
+        })
+      }
     })
   },
+  /**
+   * 创建帖子
+   * */
   commit() {
     if (!this.data.content) {
       Toast.fail(`还是说一点什么吧`);
@@ -62,9 +80,9 @@ Page({
         }, 1000)
       })
   },
-  updateImgFiles(options) {
-    console.log(options)
-  },
+  /**
+   * 选择关联商品
+   */
   selectGoods() {
     wx.showToast({
       title: "(X﹏X)  暂时没有商品可以选择。",
@@ -73,7 +91,7 @@ Page({
   },
   onShow() {
     if (app.isLogin()) {
-      console.log(app.globalData)
+      // console.log(app.globalData)
       let locationTxt = app.globalData.locationInfo ? app.globalData.locationInfo.name : '打卡纪念'
       let talkTxt = app.globalData.talkInfo ? '#' + app.globalData.talkInfo.name : 'Select Your Tag'
       this.setData({
@@ -82,33 +100,34 @@ Page({
       })
     }
   },
+  /**
+   * 图片放大
+   */
   previewImage: function(e) {
     wx.previewImage({
-      current: e.currentTarget.id, // 当前显示图片的http链接
+      current: e.currentTarget.dataset.src, // 当前显示图片的http链接
       urls: this.data.files // 需要预览的图片http链接列表
     })
   },
+  /** 文件上传返回promise */
   uploadFile(files) {
-    // 文件上传的函数，返回一个promise
     try {
       let that = this
       console.log('upload files', files)
       return new Promise((resolve, reject) => {
-        that.up(files.tempFilePaths, {
-          urls: []
-        }, resolve)
+        that.up(files.tempFilePaths, [], resolve)
       })
     } catch (e) {
       console.log(e)
     }
   },
-  //上传
-  up(filePaths, json, resolve) {
+  /** 递归上传 */
+  up(filePaths, fildIds, resolve) {
     let that = this
     let len = filePaths.length
     if (len == 0) {
       wx.hideLoading()
-      return resolve(json)
+      return resolve(fildIds)
     } else {
       wx.showLoading({
         title: '上传中',
@@ -121,9 +140,9 @@ Page({
         filePath,
         success: res => {
           console.log('[上传文件] 成功：', res)
-          json.urls.push(res.fileID)
-          filePaths.splice(0, 1)
-          that.up(filePaths, json, resolve)
+          fildIds.push(res.fileID)
+          filePaths.shift()
+          that.up(filePaths, fildIds, resolve)
         },
         fail: e => {
           console.error('[上传文件] 失败：', e)
@@ -136,37 +155,25 @@ Page({
       })
     }
   },
-  uploadError(e) {
-    console.log('upload error', e.detail)
-    Toast.fail(`第${e.detail.index + 1}图片有点大呢，没法上传`);
-  },
-  uploadSuccess(e) {
-    let files = e.detail.map((ele) => {
-      return ele.url
-    })
+  /*** 删除图片 */
+  deleteImage(e) {
+    let src = e.currentTarget.dataset.src
+    let index = e.currentTarget.dataset.index
+    let deleteArr = [src];
+    let files = this.data.files
+    files.splice(index, 1)
     this.setData({
-      files: files
-    })
-    console.log('upload success', this.data.files)
-  },
-  deleteImg(e, m) {
-    let deleteArr = e.detail;
-    let index = this.data.files.indexOf(deleteArr[0])
-    if (index != -1) {
-      this.data.files.splice(index, 1);
-    }
-    this.setData({
-      files: this.data.files
+      files
     })
     wx.cloud.deleteFile({
       fileList: deleteArr
     }).then(res => {
-      // handle success
       console.log("删除成功", res.fileList)
-    }).catch(error => {
-      // handle error
-    })
+    }).catch(error => {})
   },
+  /**
+   * 文章输入监听
+   */
   editInput(event) {
     if (event.detail.value.length <= this.data.maxTxtLen) {
       this.data.content = event.detail.value
