@@ -1,4 +1,4 @@
-<view class="o_header">
+<view wx:if="{{isLogin}}" class="o_header">
   <view class="head-content">
     <view class="userimg">
       <image src="{{user.avatarUrl}}"></image>
@@ -20,14 +20,28 @@
     <text>{{user.nickName}}</text>
   </view>
 </view>
-<view class="o_header">
+<view wx:else class="o_header">
+  <view class="o_h_b">
+    <view class="o_h_b-user userimg">
+      <image class="defaultFace" src="cloud://garbage-zy-jfq6e.6761-garbage-zy-jfq6e/background/akari.jpg"></image>
+    </view>
+    <button bindtap="goLogin" class="loginbtn">登录 Login</button>
+  </view>
 </view>
 <view class="gray-line"></view>
-<van-cell title="我的帖子" value-class="value-class" value="我的提问都在这里哦" is-link></van-cell>
-<van-cell title="我赞过的" value-class="value-class" value="" is-link></van-cell>
-<van-cell title="我的关注" value-class="value-class" value="用户、话题" is-link></van-cell>
-<van-cell title="我的收藏" value-class="value-class" value="NEWS、百科、帖子" is-link></van-cell>
-<van-cell title="我的回复" value-class="value-class" value="" is-link></van-cell>
+<view class="content">
+  <view wx:if="{{isLogin}}" class="content">
+    <van-cell title="我的帖子" value-class="value-class" value="我的提问都在这里哦" is-link></van-cell>
+    <van-cell title="我赞过的" value-class="value-class" value="" is-link></van-cell>
+    <van-cell title="我的关注" value-class="value-class" value="用户、话题" is-link></van-cell>
+    <van-cell title="我的收藏" value-class="value-class" value="NEWS、百科、帖子" is-link></van-cell>
+    <van-cell title="我的回复" value-class="value-class" value="" is-link></van-cell>
+  </view>
+  <view wx:else class="content" style="text-align:center">
+    <image style="width:560rpx;height:320rpx" mode="aspectFit" src="cloud://garbage-zy-jfq6e.6761-garbage-zy-jfq6e/background/noContent.png"></image>
+  </view>
+</view>
+
 <view class="gray-line"></view>
 <van-cell title="我的签到" value-class="value-class" value="" is-link></van-cell>
 <van-cell title="硬币商城" value-class="value-class" value="1231" is-link></van-cell>

@@ -6,7 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    user: {}
+    user: {},
+    isLogin: false
   },
 
   /**
@@ -14,6 +15,12 @@ Page({
    */
   onLoad: function(options) {
 
+  },
+  /**
+   * 去登录
+   */
+  goLogin(){
+    app.goLogin()
   },
 
   /**
@@ -29,7 +36,8 @@ Page({
   onShow: function() {
     if (app.isLogin()) {
       this.setData({
-        user: app.getUser()
+        user: app.getUser(),
+        isLogin: true
       })
     }
   },

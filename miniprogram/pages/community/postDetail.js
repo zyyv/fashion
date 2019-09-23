@@ -26,6 +26,10 @@ Page({
     showReply: false,
     currentFiles: [], //评论图片
     maxCount: 3,
+    /* 分享 */
+    share: false, //是否从分享页面进入
+    opacity: 1, //回到首页按钮的透明度
+    timer: null, //是否在滚动
   },
 
   /**
@@ -33,12 +37,22 @@ Page({
    */
   onLoad: function(options) {
     let that = this
+    if (options.share) {
+      this.setData({
+        share: true
+      })
+    }
     this.setData({
       postId: options._id
     })
     this.getPost()
     this.loadAllPosts()
     // this.getPhoneInfo()
+  },
+  backHome() {
+    wx.switchTab({
+      url: '/pages/home/home',
+    })
   },
   /**
    * 选择评论图片
@@ -264,7 +278,7 @@ Page({
         success: function(res) {
           // res.data 是包含以上定义的两条记录的数组
           console.log(res.data)
-          let posts = res.data.filter(ele=>{
+          let posts = res.data.filter(ele => {
             return ele._id != that.data.postId
           })
           if (app.isLogin()) {
@@ -504,7 +518,7 @@ Page({
     return {
       title: this.data.post.content,
       // imageUrl: this.data.post.files[0],
-      path: 'pages/community/postDetail?_id=' + this.data.postId,
+      path: `pages/community/postDetail?_id=${this.data.postId}&share=share`,
       success: function(res) {
         wx.showToast({
           title: '分享成功',
@@ -529,5 +543,17 @@ Page({
         reply_bottom: 0
       })
     }
+    if (this.data.timer) {
+      clearTimeout(this.data.timer)
+    }
+    let timer = setTimeout(() => {
+      this.setData({
+        opacity: 1
+      })
+    }, 300)
+    this.setData({
+      opacity: 0.4,
+      timer: timer
+    })
   }
 })

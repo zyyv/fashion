@@ -147,5 +147,11 @@
   </view>
   <view bindtap="menusClose" class="cancel">取消</view>
 </van-popup>
+<!-- 回到首页 -->
+<view wx:if="{{share}}" class="bcakHome-box">
+  <button bindtap="backHome" style="opacity:{{opacity}}" class="bcakHome-btn">
+    <text style="font-size:30rpx" class="iconfont icon-backhome backhome"></text>
+     回到首页</button>
+</view>
 <!-- 提示 -->
 <van-toast id="van-toast" />

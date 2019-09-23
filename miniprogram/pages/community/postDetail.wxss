@@ -463,3 +463,21 @@ Page {
 .reply-con-reply-article {
   color: #4f4f4f;
 }
+
+.bcakHome-box {
+  position: fixed;
+  bottom: 120rpx;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.bcakHome-box .bcakHome-btn {
+  width: 230rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  background: #c22a2c;
+  color: #fff;
+  font-size: 26rpx;
+  border-radius: 40rpx;
+  transition: all ease-in-out 0.35s;
+}
