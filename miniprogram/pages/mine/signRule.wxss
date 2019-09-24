@@ -1,0 +1,10 @@
+/* pages/mine/signRule.wxss */
+page{
+  background: #fff;
+}
+.tips{
+  width: 100%;
+  padding:50rpx 20rpx;
+  font-size: 28rpx;
+  color: #242528;
+}

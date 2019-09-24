@@ -31,7 +31,7 @@
 <view class="gray-line"></view>
 <view class="content">
   <view wx:if="{{isLogin}}" class="content">
-    <van-cell title="我的帖子" value-class="value-class" value="我的提问都在这里哦" is-link></van-cell>
+    <van-cell title="我的帖子" value-class="value-class" value="我的帖子都在这里哦" is-link></van-cell>
     <van-cell title="我赞过的" value-class="value-class" value="" is-link></van-cell>
     <van-cell title="我的关注" value-class="value-class" value="用户、话题" is-link></van-cell>
     <van-cell title="我的收藏" value-class="value-class" value="NEWS、百科、帖子" is-link></van-cell>
@@ -43,8 +43,9 @@
 </view>
 
 <view class="gray-line"></view>
-<van-cell title="我的签到" value-class="value-class" value="" is-link></van-cell>
+<van-cell title="我的签到" value-class="value-class" value="" is-link url="/pages/mine/signin"></van-cell>
 <van-cell title="硬币商城" value-class="value-class" value="1231" is-link></van-cell>
 <view class="gray-line"></view>
 <van-cell title="意见反馈" value-class="value-class" value="QQ群：1633711653" is-link></van-cell>
 <van-cell title="打赏" value-class="value-class" value="1231" is-link></van-cell>
+<van-cell title="ReadMe" value-class="value-class" value="开发者说明" required is-link url="/pages/mine/signRule?from=readme"></van-cell>

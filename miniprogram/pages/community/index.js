@@ -14,7 +14,7 @@ Page({
       opacity: 1
     },
     followPosts: [],
-    talksArr:[],
+    talksArr: [],
     state: {
       scrollTop: null,
       scrollIng: null
@@ -180,40 +180,26 @@ Page({
     }
   },
   onPageScroll(e) {
-    this.data.fabu = {
-      right: -58,
-      opacity: .5
-    }
-    this.data.state = {
-      scrollTop: e.scrollTop,
-      scrollIng: true
-    }
-    this.setData({
-      fabu: this.data.fabu,
-      state: this.data.state
-    })
     if (this.data.scrollTimer) {
-      // console.log('11')
       clearTimeout(this.data.scrollTimer)
     }
-    this.data.scrollTimer = setTimeout(() => {
-      if (this.data.state.scrollTop === e.scrollTop) {
-        this.data.state = {
-          scrollTop: e.scrollTop,
-          scrollIng: false
-        }
-        this.data.fabu = {
-          right: 0,
-          opacity: 1
-        }
-        this.setData({
-          fabu: this.data.fabu,
-          state: this.data.state,
-          scrollTimer: this.data.scrollTimer
-        })
-        clearTimeout(this.data.scrollTimer)
+    let scrollTimer = setTimeout(() => {
+      let o = {
+        right: 0,
+        opacity: 1
       }
+      this.setData({
+        fabu: o,
+      })
     }, 300)
+    let fabu = {
+      right: -58,
+      opacity: 0.5
+    }
+    this.setData({
+      fabu: fabu,
+      scrollTimer: scrollTimer
+    })
   },
   watch: {
 

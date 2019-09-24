@@ -170,30 +170,30 @@ Page({
     }
 
   },
-  updateNews() {
-    const db = wx.cloud.database()
-    // const _ = db.command
-    var len = this.data.newsList.length
-    for (let i = 0; i < len; i++) {
-      db.collection('news').doc(this.data.newsList[i]._id).update({
-        data: {
-          fbDate: new Date(this.data.newsList[i].date)
-        },
-        success: function(res) {
-          console.log(1)
-        }
-      })
-    }
-    // this.onUpdate()
-    // .where({
-    //   _openid: this.data.openid
-    // }).update({
-    //   data: {
-    //     newsId: this.data.a++
-    //   },
-    // })
+  // updateNews() {
+  //   const db = wx.cloud.database()
+  //   // const _ = db.command
+  //   var len = this.data.newsList.length
+  //   for (let i = 0; i < len; i++) {
+  //     db.collection('news').doc(this.data.newsList[i]._id).update({
+  //       data: {
+  //         fbDate: new Date(this.data.newsList[i].date)
+  //       },
+  //       success: function(res) {
+  //         console.log(1)
+  //       }
+  //     })
+  //   }
+  //   // this.onUpdate()
+  //   // .where({
+  //   //   _openid: this.data.openid
+  //   // }).update({
+  //   //   data: {
+  //   //     newsId: this.data.a++
+  //   //   },
+  //   // })
 
-  },
+  // },
   /**
    * 跳转帖子详情
    */
@@ -207,7 +207,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.onGetOpenid()
+    // this.onGetOpenid()
     this.loadNews();
     this.loadLunBo();
   },
@@ -269,32 +269,33 @@ Page({
   onShareAppMessage: function() {
 
   },
-  onUpdate(){
-    wx.cloud.callFunction({
-      name: 'updateNews',
-      data: {},
-      success: res => {
-        console.log("ok")
-      },
-      fail: err => {
-        console.error('[云函数] 调用失败', err)
-      }
-    })
-  },
-  onGetOpenid: function() {
-    // 调用云函数
-    wx.cloud.callFunction({
-      name: 'login',
-      data: {},
-      success: res => {
-        app.globalData.openid = res.result.openid
-        this.setData({
-          openid: app.globalData.openid
-        })
-      },
-      fail: err => {
-        console.error('[云函数] [login] 调用失败', err)
-      }
-    })
-  },
+  // onUpdate(){
+  //   wx.cloud.callFunction({
+  //     name: 'updateNews',
+  //     data: {},
+  //     success: res => {
+  //       console.log("ok")
+  //     },
+  //     fail: err => {
+  //       console.error('[云函数] 调用失败', err)
+  //     }
+  //   })
+  
+  // },
+  // onGetOpenid: function() {
+  //   // 调用云函数
+  //   wx.cloud.callFunction({
+  //     name: 'login',
+  //     data: {},
+  //     success: res => {
+  //       app.globalData.openid = res.result.openid
+  //       this.setData({
+  //         openid: app.globalData.openid
+  //       })
+  //     },
+  //     fail: err => {
+  //       console.error('[云函数] [login] 调用失败', err)
+  //     }
+  //   })
+  // },
 })

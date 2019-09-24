@@ -22,7 +22,7 @@ App({
     var user = wx.getStorageSync('userInfo')
     return user ? true : false
   },
-  goLogin(){
+  goLogin() {
     wx.navigateTo({
       url: '/pages/login/index',
     })

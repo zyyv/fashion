@@ -1,0 +1,3 @@
+<!--pages/mine/signRule.wxml-->
+<view wx:if="{{isSign}}" class="tips">每日签到可得20硬币，连续签到叠加赠送硬币。</view>
+<view wx:if="{{isReadMe}}" class="tips">asdsad</view>

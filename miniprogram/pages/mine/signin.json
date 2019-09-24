@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-cell": "../../libray/dist/cell/index",
+    "van-icon": "../../libray/dist/icon/index",
+    "van-toast": "../../libray/dist/toast/index",
+    "van-switch": "../../libray/dist/switch/index",
+    "van-steps": "../../libray/dist/steps/index"
+  },
+  "navigationBarTitleText":"签到"
+}

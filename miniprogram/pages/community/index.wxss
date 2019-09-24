@@ -144,7 +144,7 @@ swiper {
   background: transparent;
 }
 
-.fabu{
+.fabu {
   width: 104rpx;
   padding: 8rpx 10rpx;
   background: #c22a2c;
@@ -152,12 +152,15 @@ swiper {
   /* right: -58rpx; */
   bottom: 115rpx;
   /* opacity: 1; */
-  border-top-left-radius:30rpx;
-  border-bottom-left-radius:30rpx;
+  border-top-left-radius: 30rpx;
+  border-bottom-left-radius: 30rpx;
   font-size: 24rpx;
   color: #fff;
   display: flex;
   justify-content: space-between;
   align-items: center;
   transition: all ease-in-out 0.3s;
+  -moz-transition: all ease-in-out 0.3s; /* Firefox 4 */
+  -webkit-transition: all ease-in-out 0.3s; /* Safari 和 Chrome */
+  -o-transition: all ease-in-out 0.3s; /* Opera */
 }

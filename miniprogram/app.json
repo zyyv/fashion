@@ -1,4 +1,5 @@
 {
+  "cloud": true,
   "pages": [
     "pages/home/home",
     "pages/index/index",
@@ -21,6 +22,8 @@
     "pages/community/postDetail",
     "pages/mine/mine",
     "pages/mine/mine2",
+    "pages/mine/signin",
+    "pages/mine/signRule",
     "pages/login/index"
   ],
   "permission": {

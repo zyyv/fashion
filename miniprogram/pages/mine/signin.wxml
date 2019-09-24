@@ -1,0 +1,30 @@
+<!--pages/mine/signin.wxml  签到 -->
+<van-toast id="van-toast" />
+<van-cell center="{{true}}">
+  <view slot="title">
+    <view bindtap="goRuler" class="sign-ruler">
+      <van-icon color="#212121" size="30rpx" custom-style="margin-top:10rpx;" name="question-o"></van-icon>
+      <text style="color:#212121;font-size:26rpx;margin-left:6rpx">规则说明</text>
+    </view>
+  </view>
+  <view slot="default">
+    <view class="switch">
+      <van-switch bind:change="onChange" style="display:flex;" active-color="#07c160" inactive-color="#ee0a24" size="40rpx" checked="{{ checked }}" bind:change="onChange" />
+      <text style="color:#666;font-size:26rpx;margin-right:20rpx">签到提醒</text>
+    </view>
+  </view>
+</van-cell>
+<view class="gray-line"></view>
+<view class="signbox">
+  <image class="tip-img" mode="aspectFit" src="https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/background/coins.png?sign=aab72a4f0668f832cce15ca428efe3bd&t=1569229307"></image>
+  <button wx:if="isSign" bindtap="sign" class="signBtn">签到 +20</button>
+  <button wx:else style="background: #00b26a;color: white;" class="signBtn">已签到</button>
+</view>
+<view class="tips">明日签到可领30Chris!Coins,连续签到有更多惊喜哟!</view>
+<view class="stepBox">
+  <van-steps steps="{{ steps }}" active="{{ active }}" active-icon="success" active-color="#38f" />
+</view>
+<view class="gray-line"></view>
+<view class="footer">
+  <image style="width:100%;height:363rpx;" src="https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/background/sign-footer-img.jpg?sign=fa0c89096378bb5de3350878a096781c&t=1569230475"></image>
+</view>

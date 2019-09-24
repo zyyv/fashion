@@ -115,6 +115,13 @@
 					"id": -1,
 					"name": "我的 2",
 					"pathName": "pages/mine/mine2",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "签到",
+					"pathName": "pages/mine/signin",
 					"scene": null
 				}
 			]
