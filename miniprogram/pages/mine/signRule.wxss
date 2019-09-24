@@ -8,3 +8,7 @@ page{
   font-size: 28rpx;
   color: #242528;
 }
+.toadmin{
+  color: #c22a2c;
+  text-decoration: underline;
+}

@@ -14,7 +14,6 @@
     "pages/openapi/callback/callback",
     "pages/openapi/cloudid/cloudid",
     "pages/news/details",
-    "pages/a/index",
     "pages/community/index",
     "pages/community/release",
     "pages/community/talk",
@@ -24,6 +23,8 @@
     "pages/mine/mine2",
     "pages/mine/signin",
     "pages/mine/signRule",
+    "pages/coinShop/index",
+    "pages/mine/func",
     "pages/login/index"
   ],
   "permission": {
@@ -48,10 +49,10 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/a/index",
+        "pagePath": "pages/coinShop/index",
         "iconPath": "images/tabBar/ic-fenlei.png",
         "selectedIconPath": "images/tabBar/ic-fenlei-select.png",
-        "text": "分类"
+        "text": "商城"
       },
       {
         "pagePath": "pages/community/index",

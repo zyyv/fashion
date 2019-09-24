@@ -17,13 +17,13 @@
     </view>
   </view>
   <view class="content">
-    <van-cell-group>
+    <!-- <van-cell-group>
       <van-field value="{{ value }}" placeholder="你想了解点什么?" border="{{ false }}" use-button-slot bind:change="searchValueChange">
         <van-button bind:click="btnSearch" slot="button" size="small" round="true" type="primary">搜索</van-button>
       </van-field>
-    </van-cell-group>
-    <view class="gary-line"></view>
-    <van-tabs animated>
+    </van-cell-group> 
+    <view class="gray-line"></view>-->
+    <van-tabs active="{{ active }}" bind:change="onChange" animated>
       <block wx:for="{{tabs}}" wx:key="{{item.id}}">
         <van-tab title="{{item.title}}">
           <view class="flex-b tab-content">
@@ -35,7 +35,7 @@
         </van-tab>
       </block>
     </van-tabs>
-    <view class="gary-line"></view>
+    <view class="gray-line"></view>
     <view class="fff news">
       <view class="news-header">
         <text class="iconfont icon-news ic-news"></text>

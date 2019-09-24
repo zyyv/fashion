@@ -43,7 +43,7 @@ Page({
   },
   goRuler() {
     wx.navigateTo({
-      url: '/pages/mine/signRule',
+      url: '/pages/mine/signRule?from=sign',
     })
   },
   onChange(event) {

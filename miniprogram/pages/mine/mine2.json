@@ -1,5 +1,6 @@
 {
   "usingComponents": {
     "van-cell": "../../libray/dist/cell/index"
-  }
+  },
+  "navigationBarTitleText": "我的"
 }

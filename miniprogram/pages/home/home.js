@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    searchDefaultVal: '',
+    // searchDefaultVal: 'asdsad',
     searchChangeVal: '',
     sliderLeft: 0, //轮播滑块的left值
     newsList: [], //新闻集合
@@ -15,8 +15,7 @@ Page({
     skip: 0, //跳过前面多少条数据获取
     continueLoad: true, //继续加载--> 数据是否读取完
     showLoading: false,
-    openid: '',
-    sliderWidth: 0,
+    sliderWidth: 0, //滑块的宽度
     tabs: [{
         id: 0,
         title: 'Converse',
@@ -43,19 +42,31 @@ Page({
       }
     ],
     lunbo_data: [], //轮播的数据,
-    a: 0
+    active: 0
+  },
+  onChange(event) {
+    // wx.showToast({
+    //   title: `切换到标签 ${event.detail.index + 1}`,
+    //   icon: 'none'
+    // });
+    console.log(event.detail.index)
   },
   currentChange(e) {
-    if (this.data.sliderWidth === 0) {
-      wx.createSelectorQuery().select('#slider').boundingClientRect((rect) => {
-        this.setData({
-          sliderWidth: Math.ceil(rect.width) * 2
-        })
-      }).exec()
+    try {
+      if (this.data.sliderWidth === 0) {
+        wx.createSelectorQuery().select('#slider').boundingClientRect((rect) => {
+          this.setData({
+            sliderWidth: Math.ceil(rect.width) * 2
+          })
+        }).exec()
+      }
+      this.setData({
+        sliderLeft: e.detail.current
+      })
+    } catch (e) {
+      console.log(e)
     }
-    this.setData({
-      sliderLeft: e.detail.current
-    })
+
   },
   searchValueChange(event) {
     this.setData({
@@ -114,7 +125,7 @@ Page({
         // _openid: this.data.openid
       }).limit(this.data.limit).orderBy('fbDate', 'desc').get({
         success: res => {
-          this.setData({ 
+          this.setData({
             // newsList: res.data
             newsList: this.data.newsList.concat(res.data)
           })
@@ -223,7 +234,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    
+
   },
 
   /**
@@ -280,7 +291,7 @@ Page({
   //       console.error('[云函数] 调用失败', err)
   //     }
   //   })
-  
+
   // },
   // onGetOpenid: function() {
   //   // 调用云函数

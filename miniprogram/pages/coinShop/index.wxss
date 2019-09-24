@@ -1,0 +1,93 @@
+/* pages/coinShop/index.wxss */
+
+page {
+  padding-bottom: 100rpx;
+  background: #fff;
+}
+.h-coins{
+  width: 100%;
+  font-size: 50rpx;
+  color:#f7cf46;
+  text-align: center;
+  margin: 60rpx 0;
+}
+.h-btns{
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+.h-btns button{
+  background: #373737;
+  color: #fff;
+  font-size: 24rpx;
+  border-radius: 0;
+  margin: 0;
+}
+
+.tips {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  background: #e3e3e3;
+  width: 100%;
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 24rpx;
+  color: #646464;
+  text-align: center;
+}
+
+.goods-item {
+  width: 100%;
+}
+
+.goods-img {
+  width: 100%;
+  height: 300rpx;
+}
+
+.goods-img image {
+  width: 100%;
+  height: 100%;
+}
+
+.goods-info {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.goods-info .info-l {
+  padding: 20rpx 30rpx;
+}
+
+.info-l .info-name {
+  font-size: 30rpx;
+  color: #212121;
+}
+
+.info-l .info-num {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.info-l .info-point {
+  font-size: 32rpx;
+  color: #f7cf46;
+  margin: 16rpx 0;
+}
+
+.goods-info .exchange {
+  position: absolute;
+  right: 40rpx;
+  margin: 0;
+  width: 136rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #fff;
+  background: #373737;
+  font-size: 26rpx;
+  border-radius: 0;
+}

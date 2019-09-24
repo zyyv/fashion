@@ -122,6 +122,13 @@
 					"id": -1,
 					"name": "签到",
 					"pathName": "pages/mine/signin",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "硬币商城",
+					"pathName": "pages/coinShop/index",
 					"scene": null
 				}
 			]

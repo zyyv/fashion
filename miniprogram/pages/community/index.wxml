@@ -3,16 +3,16 @@
     <scroll-view scroll-x="{{true}}">
       <view class="recommendBox">
         <view class="recommendUsers">
-          <view class="user-item">
-            <image src="../../images/home/news/news_001.jpg"></image>
-            <view class="username">哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈</view>
-            <view class="follow">关注</view>
+          <view wx:for="{{userArr}}" wx:key="{{item._id}}" class="user-item">
+            <image src="{{item.avatarUrl}}"></image>
+            <view class="username">{{item.nickName}}</view>
+            <view class="{{item.gender % 2 == 0? 'followY' :'follow'}}">{{item.gender % 2 == 0? '已关注' :'关注'}}</view>
           </view>
-          <view class="user-item">
+          <!-- <view class="user-item">
             <image src="../../images/home/news/news_001.jpg"></image>
             <view class="username">哈哈哈哈哈</view>
             <view class="followY">已关注</view>
-          </view>
+          </view> -->
         </view>
       </view>
     </scroll-view>

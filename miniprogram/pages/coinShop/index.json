@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "van-toast": "../../libray/dist/toast/index"
+  },
+  "navigationBarTitleText": "商城"
+}

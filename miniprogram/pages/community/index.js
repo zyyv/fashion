@@ -15,6 +15,7 @@ Page({
     },
     followPosts: [],
     talksArr: [],
+    userArr:[],
     state: {
       scrollTop: null,
       scrollIng: null
@@ -40,6 +41,19 @@ Page({
    */
   onReady: function() {
     // this.popup = this.selectComponent("#popup");
+  },
+  loadAllUser(){
+    let that = this
+    db.collection('users')
+      .get({
+        success: function (res) {
+          // res.data 是包含以上定义的两条记录的数组
+          console.log(res.data)
+          that.setData({
+            userArr: res.data
+          })
+        }
+      })
   },
   loadAllPosts() {
     let that = this
@@ -103,6 +117,7 @@ Page({
   onShow: function() {
     this.loadAllPosts()
     this.loadAllTalks()
+    this.loadAllUser()
   },
   getUserInfo(event) {
     console.log(event)

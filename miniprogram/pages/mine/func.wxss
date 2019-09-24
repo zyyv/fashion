@@ -1,0 +1,40 @@
+page {
+  background: #f4f4f4;
+}
+
+.box {
+  text-align: center;
+  width: 100%;
+  margin-top: 100rpx;
+  /* transform: scale(0.8); */
+}
+
+.box .image {
+  width: 80%;
+  height: 796rpx;
+  border-radius: 10rpx;
+  /* width: 540rpx; *//* height: 716rpx; */
+}
+
+.box .title {
+  /* text-align: left; */
+  margin: 0 auto;
+  /* margin-top: 20rpx; */
+  width: 80%;
+  font-size: 28rpx;
+  color: #666;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100rpx;
+}
+
+.btn-copy {
+  background: #373737;
+  font-size: 26rpx;
+  color: white;
+  padding: 0rpx 10rpx;
+  width: 180rpx;
+  height: 65rpx;
+  margin: 0;
+}

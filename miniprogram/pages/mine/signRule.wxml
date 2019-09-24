@@ -1,3 +1,7 @@
 <!--pages/mine/signRule.wxml-->
 <view wx:if="{{isSign}}" class="tips">每日签到可得20硬币，连续签到叠加赠送硬币。</view>
-<view wx:if="{{isReadMe}}" class="tips">asdsad</view>
+<view wx:if="{{isReadMe}}" class="tips">
+  <view>小程序资源均来自于网络，如有侵权，请及时<text bindtap="toAdmin" class="toadmin">联系开发者</text>告知，开发者将作删除，下架处理，谢谢配合。</view>
+  <view style="margin-top:20rpx;">求求各位老板请勿举报，谢谢！</view>
+</view>
+<van-dialog id="van-dialog" />

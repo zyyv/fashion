@@ -1,40 +1,34 @@
-// pages/mine/signRule.js
-import Dialog from '../../libray/dist/dialog/dialog';
+// pages/coinShop/index.js
+import Toast from '../../libray/dist/toast/toast.js';
+const app = getApp()
+const db = wx.cloud.database()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    isReadMe: false,
-    isSign: false
+    goods: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if (options.from == 'readme') {
-      this.setData({
-        isReadMe: true
-      })
-      wx.setNavigationBarTitle({
-        title: '签到说明',
-      })
-    } else if (options.from == 'sign') {
-      this.setData({
-        isSign: true
-      })
-      wx.setNavigationBarTitle({
-        title: '开发者说明',
-      })
-    }
+    this.loadAllShops()
   },
-  toAdmin() {
-    Dialog.alert({
-      title: 'ヽ(✿ﾟ▽ﾟ)ノ',
-      message: '好吧，我就把我的qq和微信告诉你吧\nQQ: 1633711653\nWeChat: 13198176261'
-    })
+  loadAllShops() {
+    let that = this
+    db.collection('shops')
+      .get({
+        success: function(res) {
+          let goods = res.data
+          that.setData({
+            goods: goods
+          })
+          console.log(goods)
+        }
+      })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

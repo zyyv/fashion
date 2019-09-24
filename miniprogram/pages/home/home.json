@@ -6,5 +6,6 @@
     "van-tab": "../../libray/dist/tab/index",
     "van-tabs": "../../libray/dist/tabs/index",
     "van-loading": "../../libray/dist/loading/index"
-  }
+  },
+  "navigationBarTitleText": "首页"
 }

@@ -1,41 +1,55 @@
-// pages/mine/signRule.js
-import Dialog from '../../libray/dist/dialog/dialog';
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    isReadMe: false,
-    isSign: false
+    isReward: false,
+    isAdvise: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if (options.from == 'readme') {
-      this.setData({
-        isReadMe: true
-      })
+    if (options.from == "advise") {
       wx.setNavigationBarTitle({
-        title: '签到说明',
+        title: '意见反馈',
       })
-    } else if (options.from == 'sign') {
       this.setData({
-        isSign: true
+        isAdvise: true
       })
+    }
+    if (options.from == "reward") {
       wx.setNavigationBarTitle({
-        title: '开发者说明',
+        title: '打赏',
+      })
+      this.setData({
+        isReward: true
       })
     }
   },
-  toAdmin() {
-    Dialog.alert({
-      title: 'ヽ(✿ﾟ▽ﾟ)ノ',
-      message: '好吧，我就把我的qq和微信告诉你吧\nQQ: 1633711653\nWeChat: 13198176261'
+  previewImage: function(e) {
+    let current = e.target.dataset.src;
+    wx.previewImage({
+      current: current,
+      urls: [current]
     })
   },
+
+  textPaste(e) {
+    let data = e.currentTarget.dataset.num
+    wx.setClipboardData({
+      data: data,
+      success: function(res) {
+        wx.showToast({
+          title: '复制成功',
+        })
+      }
+    })
+  },
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -75,13 +89,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
 
   }
 })

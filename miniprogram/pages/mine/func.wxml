@@ -1,0 +1,21 @@
+<!--pages/mine/func.wxml-->
+<view wx:if="{{isAdvise}}" class='box'>
+  <image class='image' src='https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/background/qq_qun.png?sign=270da14661a5a3940363881cd8b9a7e7&t=1569306877' data-src="https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/background/qq_qun.png?sign=270da14661a5a3940363881cd8b9a7e7&t=1569306877"
+    bindtap='previewImage' mode="widthFix"></image>
+  <view class='title'>
+    <view>
+      <text>QQ_群：</text>
+      <text class="wxNum" selectable='true'>184907902</text>
+    </view>
+    <button class="btn-copy" data-num="184907902" bindtap="textPaste">复制群号</button>
+  </view>
+</view>
+<view wx:if="{{isReward}}" class='box'>
+  <image class='image' src='https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/background/qq_qun.png?sign=270da14661a5a3940363881cd8b9a7e7&t=1569306877' data-src="https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/background/qq_qun.png?sign=270da14661a5a3940363881cd8b9a7e7&t=1569306877"
+    bindtap='previewImage' mode="widthFix"></image>
+  <view class='title'>
+    <view>
+      <text>谢谢老板支持！ ♪(^∇^*)</text>
+    </view>
+  </view>
+</view>

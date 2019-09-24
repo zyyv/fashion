@@ -1,4 +1,5 @@
 {
-  "usingComponents": {},
-  "navigationBarTitleText": "签到说明"
+  "usingComponents": {
+    "van-dialog": "../../libray/dist/dialog/index"
+  }
 }

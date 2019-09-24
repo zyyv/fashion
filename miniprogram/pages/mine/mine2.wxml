@@ -44,8 +44,8 @@
 
 <view class="gray-line"></view>
 <van-cell title="我的签到" value-class="value-class" value="" is-link url="/pages/mine/signin"></van-cell>
-<van-cell title="硬币商城" value-class="value-class" value="1231" is-link></van-cell>
+<van-cell title="硬币商城" value-class="value-class" value="0" url="/pages/coinShop/index" is-link></van-cell>
 <view class="gray-line"></view>
-<van-cell title="意见反馈" value-class="value-class" value="QQ群：1633711653" is-link></van-cell>
-<van-cell title="打赏" value-class="value-class" value="1231" is-link></van-cell>
+<van-cell title="意见反馈" value-class="value-class" value="QQ群：184907902" url="/pages/mine/func?from=advise" is-link></van-cell>
+<!-- <van-cell title="打赏" value-class="value-class" value="1231" url="/pages/mine/func?from=reward" is-link></van-cell> -->
 <van-cell title="ReadMe" value-class="value-class" value="开发者说明" required is-link url="/pages/mine/signRule?from=readme"></van-cell>

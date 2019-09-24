@@ -1,0 +1,33 @@
+<!--pages/coinShop/index.wxml-->
+<van-toast id="van-toast" />
+<view class="header">
+  <view class="h-coins">
+    <text style="margin-right:6rpx;font-size: 44rpx;" class="iconfont icon-coins"></text>
+    <text>2203</text>
+  </view>
+  <view class="h-btns">
+    <button class="getCoins">如何获取Chris!Coins</button>
+    <button class="detailsCoins">Chris!Coins明细</button>
+  </view>
+</view>
+<view class="goods-item" wx:for="{{goods}}" wx:key="{{item._id}}">
+  <view class="gray-line"></view>
+  <view class="goods-img">
+    <image src="{{item.img}}"></image>
+  </view>
+  <view class="goods-info">
+    <view class="info-l">
+      <view class="info-name">{{item.name}}</view>
+      <view class="info-point">
+        <text style="margin-right:6rpx" class="iconfont icon-coins"></text>{{item.point}}</view>
+      <view wx:if="{{item.num != 0}}" class="info-num">剩余{{item.num}}件</view>
+      <view wx:else class="info-num">已经被抢光了</view>
+    </view>
+    <button class="exchange">兑换</button>
+  </view>
+</view>
+
+
+<view class="tips">
+  <text>*兑换商品和活动与设备生厂商Apple Lnc.无关</text>
+</view>
