@@ -13,6 +13,7 @@
   <view class="content">
     <text class="article">{{post.content}}</text>
   </view>
+  <!-- 话题-地点 -->
   <view class="talk-box">
     <view class="talk-con">
       <text class="iconfont icon-talk talk"></text>
@@ -23,12 +24,35 @@
       <text class="locationTxt">{{post.locationTxt}}</text>
     </view>
   </view>
+  <!-- 发布时间 -->
   <view class="time-box">
     <view class="timeinfo">
-      <text class="time">{{post.postTime}}</text>
+      <view class="timeinfo-box">
+        <view class="times">
+          <text style="font-size:26rpx;margin-right:5rpx;" class="iconfont icon-time"></text>
+          <text class="time">{{post.postTime}}</text>
+        </view>
+        <view class="views">
+          <text style="font-size:30rpx;margin-right:8rpx;" class="iconfont icon-eyes"></text>
+          <text class="view">45456</text>
+        </view>
+      </view>
+
       <text bindtap="menusShow" class="iconfont icon-more delete"></text>
     </view>
   </view>
+  <!-- 作者 -->
+  <view class="author-box">
+    <image class="author-face" src="{{post.author.avatarUrl}}"></image>
+    <view class="author-info">
+      <text class="author-name">{{post.author.nickName}}</text>
+      <view class="author-postInfo">
+        1篇内容 | 100个赞
+      </view>
+    </view>
+    <button class="follow-btn">关注</button>
+  </view>
+  <view class="gray-line"></view>
   <!-- 评论区 -->
   <view class="comment">
     <!-- 没有评论 -->
@@ -150,8 +174,8 @@
 <!-- 回到首页 -->
 <view wx:if="{{share}}" class="bcakHome-box">
   <button bindtap="backHome" style="opacity:{{opacity}}" class="bcakHome-btn">
-    <text style="font-size:30rpx" class="iconfont icon-backhome backhome"></text>
-     回到首页</button>
+    <text style="font-size:30rpx" class="iconfont icon-backhome backhome"></text> 回到首页
+  </button>
 </view>
 <!-- 提示 -->
 <van-toast id="van-toast" />
