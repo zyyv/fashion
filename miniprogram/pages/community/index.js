@@ -15,13 +15,13 @@ Page({
     },
     followPosts: [],
     talksArr: [],
-    userArr:[],
+    userArr: [],
     state: {
       scrollTop: null,
       scrollIng: null
     },
     scrollTimer: null,
-    loginShow: false
+    // loginShow: false
   },
 
   /**
@@ -30,6 +30,7 @@ Page({
   onLoad: function(options) {
     getApp().setWatcher(this);
   },
+
   onTabsChange(event) {
     // console.log(event)
     this.setData({
@@ -42,11 +43,18 @@ Page({
   onReady: function() {
     // this.popup = this.selectComponent("#popup");
   },
-  loadAllUser(){
+  /**
+   * 关注，取消关注
+   */
+  followClick() {},
+  /**
+   * 加载所有的users
+   */
+  loadAllUser() {
     let that = this
     db.collection('users')
       .get({
-        success: function (res) {
+        success: function(res) {
           // res.data 是包含以上定义的两条记录的数组
           console.log(res.data)
           that.setData({
@@ -55,6 +63,9 @@ Page({
         }
       })
   },
+  /**
+   * 加载所有的帖子
+   */
   loadAllPosts() {
     let that = this
     db.collection('posts')
@@ -98,6 +109,9 @@ Page({
         }
       })
   },
+  /***
+   * 加载所有的话题
+   */
   loadAllTalks() {
     let that = this
     db.collection('talks')
@@ -119,36 +133,40 @@ Page({
     this.loadAllTalks()
     this.loadAllUser()
   },
-  getUserInfo(event) {
-    console.log(event)
-    let res = event.detail;
-    let userInfo = res.userInfo
-    if (res.errMsg.indexOf('ok') != -1) {
-      // wx.setStorageSync("user", res);
-      db.collection('users').add({
-          // data 字段表示需新增的 JSON 数据
-          data: userInfo
-        })
-        .then(response => {
-          console.log(response)
-          userInfo._id = response._id
-          wx.setStorageSync("userInfo", userInfo);
-          app.globalData.userInfo = userInfo;
-          wx.navigateTo({
-            url: '/pages/community/release',
-          })
-        })
-    }
-  },
-  closeDialog() {
-    this.setData({
-      loginShow: false
-    });
-  },
-  cancelDialog() {
-    // Toast.fail(`不登录肯定是没法发布的···`);
-    // return
-  },
+  /**
+   * 获取用户信息
+   */
+  // getUserInfo(event) {
+  //   console.log(event)
+  //   let res = event.detail;
+  //   let userInfo = res.userInfo
+  //   if (res.errMsg.indexOf('ok') != -1) {
+  //     // wx.setStorageSync("user", res);
+  //     db.collection('users').add({
+  //         // data 字段表示需新增的 JSON 数据
+  //         data: userInfo
+  //       })
+  //       .then(response => {
+  //         console.log(response)
+  //         userInfo._id = response._id
+  //         wx.setStorageSync("userInfo", userInfo);
+  //         app.globalData.userInfo = userInfo;
+  //         wx.navigateTo({
+  //           url: '/pages/community/release',
+  //         })
+  //       })
+  //   }
+  // },
+  /** 取消之前的登录方式 */
+  // closeDialog() {
+  //   this.setData({
+  //     loginShow: false
+  //   });
+  // },
+  // cancelDialog() {
+  //   Toast.fail(`不登录肯定是没法发布的···`);
+  //   return
+  // },
   /**
    * 生命周期函数--监听页面隐藏
    */

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-toast": "../../libray/dist/toast/index",
+    "van-field": "../../libray/dist/field/index",
+    "van-cell-group": "../../libray/dist/cell-group/index",
+    "van-cell": "../../libray/dist/cell/index"
+  }
+}

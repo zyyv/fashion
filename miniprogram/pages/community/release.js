@@ -114,14 +114,14 @@ Page({
       let that = this
       console.log('upload files', files)
       return new Promise((resolve, reject) => {
-        that.up(files.tempFilePaths, [], resolve)
+        that.up(files.tempFilePaths, [], resolve, reject)
       })
     } catch (e) {
       console.log(e)
     }
   },
   /** 递归上传 */
-  up(filePaths, fildIds, resolve) {
+  up(filePaths, fildIds, resolve, reject) {
     let that = this
     let len = filePaths.length
     if (len == 0) {

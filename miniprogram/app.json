@@ -24,6 +24,7 @@
     "pages/mine/signin",
     "pages/mine/signRule",
     "pages/coinShop/index",
+    "pages/coinShop/goodsDetail",
     "pages/mine/func",
     "pages/login/index"
   ],
@@ -38,7 +39,7 @@
     "navigationBarTitleText": "还没想好···",
     "navigationBarTextStyle": "white"
   },
-  "tabBar":{
+  "tabBar": {
     "color": "#8a8a8a",
     "selectedColor": "#c22a2c",
     "list": [
@@ -65,7 +66,8 @@
         "iconPath": "images/tabBar/ic-mine.png",
         "selectedIconPath": "images/tabBar/ic-mine-select.png",
         "text": "我的"
-      }]
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json"
 }

@@ -6,25 +6,27 @@
     <text>2203</text>
   </view>
   <view class="h-btns">
-    <button class="getCoins">如何获取Chris!Coins</button>
-    <button class="detailsCoins">Chris!Coins明细</button>
+    <button bindtap="getCoins" class="getCoins">如何获取Chris!Coins</button>
+    <button bindtap="coinsDetail" class="detailsCoins">Chris!Coins明细</button>
   </view>
 </view>
-<view class="goods-item" wx:for="{{goods}}" wx:key="{{item._id}}">
+<view class="goods-item" wx:for="{{goods}}" wx:key="{{item._id}}" bindtap="goodsDetail" data-id="{{item._id}}">
   <view class="gray-line"></view>
-  <view class="goods-img">
-    <image src="{{item.img}}"></image>
-  </view>
-  <view class="goods-info">
-    <view class="info-l">
-      <view class="info-name">{{item.name}}</view>
-      <view class="info-point">
-        <text style="margin-right:6rpx" class="iconfont icon-coins"></text>{{item.point}}</view>
-      <view wx:if="{{item.num != 0}}" class="info-num">剩余{{item.num}}件</view>
-      <view wx:else class="info-num">已经被抢光了</view>
+  <block >
+    <view class="goods-img">
+      <image src="{{item.img}}"></image>
     </view>
-    <button class="exchange">兑换</button>
-  </view>
+    <view class="goods-info">
+      <view class="info-l">
+        <view class="info-name">{{item.name}}</view>
+        <view class="info-point">
+          <text style="margin-right:6rpx" class="iconfont icon-coins"></text>{{item.point}}</view>
+        <view wx:if="{{item.num != 0}}" class="info-num">剩余{{item.num}}件</view>
+        <view wx:else class="info-num">已经被抢光了</view>
+      </view>
+      <button class="exchange">兑换</button>
+    </view>
+  </block>
 </view>
 
 

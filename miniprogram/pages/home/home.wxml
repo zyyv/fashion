@@ -43,7 +43,7 @@
       </view>
       <view class="news-content">
         <block wx:for="{{newsList}}" wx:for-item="newsItem" wx:key="{{newsItem._id}}">
-          <view bindtap="newsDetails" class="flex-b news-item" data-id="{{newsItem.newsid}}">
+          <view bindtap="newsDetails" class="flex-b news-item" data-id="{{newsItem._id}}">
             <image class="news-img" src="{{newsItem.image}}"></image>
             <view class="con">
               <view class="con-txt">{{newsItem.title}}</view>

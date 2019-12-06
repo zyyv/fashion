@@ -1,5 +1,6 @@
 // pages/mine/signin.js
 import Toast from '../../libray/dist/toast/toast.js';
+const app = getApp()
 Page({
 
   /**
@@ -7,39 +8,53 @@ Page({
    */
   data: {
     checked: false,
-    steps: [{
-        text: 'Today',
-      },
-      {
-        text: '10.02',
-      },
-      {
-        text: '10.03',
-      },
-      {
-        text: '10.04',
-      }, {
-        text: '10.05',
-      },
-      {
-        text: '10.06',
-      },
-      {
-        text: '10.07',
-      }
-    ],
-    active: 5,
+    steps: [],
+    active: -1,
     isSign: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {},
-  sign() {
-    this.setData({
-      isSign: true
+  onLoad: function(options) {
+    let weekArr = this.getFurtureDay()
+    let steps = weekArr.map(item => {
+      return {
+        text: item
+      }
     })
+    this.setData({
+      steps
+    })
+  },
+  /** 
+   * 返回未来一周的时间
+   */
+  getFurtureDay() {
+    var result = [];
+    var now = new Date();
+    result.push(this.getMonthDay(now));
+    for (var i = 0; i < 6; i++) {
+      now.setDate(now.getDate() + 1);
+      result.push(this.getMonthDay(now))
+    }
+    return result
+  },
+  getMonthDay(date) {
+    return (date.getMonth() + 1) + '.' + date.getDate();
+  },
+  sign() {
+    if (app.isLogin()) {
+      Toast.success('签到成功');
+      this.setData({
+        isSign: true,
+        active: 0
+      })
+    } else {
+      wx.navigateTo({
+        url: '/pages/login/index',
+      })
+    }
   },
   goRuler() {
     wx.navigateTo({

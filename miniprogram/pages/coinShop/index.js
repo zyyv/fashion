@@ -15,8 +15,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.loadAllShops()
+   
   },
+  goodsDetail(e) {
+    let id = e.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/coinShop/goodsDetail?goodId=' + id,
+    })
+  },
+  /**
+   * 获取硬币
+   */
+  getCoins() {
+    wx.navigateTo({
+      url: '/pages/mine/signin'
+    })
+  },
+  coinsDetail() {
+    wx.navigateTo({
+      url: '/pages/mine/signin'
+    })
+  },
+  /** 
+   * 加载所有的商品
+   */
   loadAllShops() {
     let that = this
     db.collection('shops')
@@ -41,7 +63,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.loadAllShops()
   },
 
   /**

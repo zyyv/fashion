@@ -17,7 +17,7 @@
 <view class="gray-line"></view>
 <view class="signbox">
   <image class="tip-img" mode="aspectFit" src="https://6761-garbage-zy-jfq6e-1259641361.tcb.qcloud.la/background/coins.png?sign=aab72a4f0668f832cce15ca428efe3bd&t=1569229307"></image>
-  <button wx:if="isSign" bindtap="sign" class="signBtn">签到 +20</button>
+  <button wx:if="{{!isSign}}" bindtap="sign" class="signBtn">签到 +20</button>
   <button wx:else style="background: #00b26a;color: white;" class="signBtn">已签到</button>
 </view>
 <view class="tips">明日签到可领30Chris!Coins,连续签到有更多惊喜哟!</view>

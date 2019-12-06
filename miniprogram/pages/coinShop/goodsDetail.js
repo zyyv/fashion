@@ -1,39 +1,38 @@
-// pages/mine/signRule.js
-import Dialog from '../../libray/dist/dialog/dialog';
+// pages/coinShop/goodsDetail.js
+const app = getApp()
+const db = wx.cloud.database()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    isReadMe: false,
-    isSign: false
+    goodId: '',
+    goods: {},
+    user: {
+      name: '',
+      phone: '',
+      address: ''
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if (options.from == 'readme') {
-      this.setData({
-        isReadMe: true
-      })
-      wx.setNavigationBarTitle({
-        title: '开发者说明',
-      })
-    } else if (options.from == 'sign') {
-      this.setData({
-        isSign: true
-      })
-      wx.setNavigationBarTitle({
-        title: '签到说明',
-      })
-    }
+    let goodId = options.goodId
+    this.setData({
+      goodId
+    })
+    this.loadGoodsById()
   },
-  toAdmin() {
-    Dialog.alert({
-      title: 'ヽ(✿ﾟ▽ﾟ)ノ',
-      message: '好吧，我就把我的qq和微信告诉你吧\nQQ: 1633711653\nWeChat: 13198176261'
+  /** 加载商品 */
+  async loadGoodsById() {
+    let goodId = this.data.goodId
+    let res = await db.collection('shops').doc(goodId).get()
+    console.log(res.data)
+    this.setData({
+      goods: res.data
     })
   },
   /**
