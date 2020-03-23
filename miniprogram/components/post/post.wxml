@@ -5,7 +5,7 @@
   <view class="posts_title">{{post.content}}</view>
   <view class="posts_price">
     <view class="users">
-      <image src="{{post.author.avatarUrl}}"></image>
+      <image class="userimg" src="{{post.author.avatarUrl}}"></image>
       <view class="username">{{post.author.nickName}}</view>
     </view>
     <view catchtap="more" class="like {{post.alreadyLike?'likeing':'origi'}}">

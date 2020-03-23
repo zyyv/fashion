@@ -1,7 +1,7 @@
 <!--pages/community/talk.wxml-->
 <view class="talk-title">推荐话题</view>
 <view class="talk-list">
-  <block wx:for="{{talkList}}" wx:key="{{index}}">
+  <block wx:for="{{talkList}}" wx:key="_id">
     <view bindtap="select" data-item="{{item}}" class="talk-item">
       <image src="{{item.img}}" class="talk-img"></image>
       <view class="talk-info">

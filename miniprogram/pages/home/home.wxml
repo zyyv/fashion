@@ -3,7 +3,7 @@
   <view class="header h-hidden">
     <view class="lunbo-container">
       <swiper autoplay="true" interval="3000" circular="true" display-multiple-items="1" easing-function="easeInOutCubic" bindchange="currentChange">
-        <block wx:for="{{lunbo_data}}" wx:for-item="lunbo_data" wx:key="{{lunbo_data.type_id}}">
+        <block wx:for="{{lunbo_data}}" wx:for-item="lunbo_data" wx:key="_id">
           <swiper-item>
             <view class="lun-item ">
               <image src="{{lunbo_data.url}}"></image>
@@ -24,7 +24,7 @@
     </van-cell-group> 
     <view class="gray-line"></view>-->
     <van-tabs active="{{ active }}" bind:change="onChange" animated>
-      <block wx:for="{{tabs}}" wx:key="{{item.id}}">
+      <block wx:for="{{tabs}}" wx:key="id">
         <van-tab title="{{item.title}}">
           <view class="flex-b tab-content">
             <image class="tab-img" src="{{item.img}}"></image>
@@ -42,7 +42,7 @@
         <text class="hearder-title">头条新闻</text>
       </view>
       <view class="news-content">
-        <block wx:for="{{newsList}}" wx:for-item="newsItem" wx:key="{{newsItem._id}}">
+        <block wx:for="{{newsList}}" wx:for-item="newsItem" wx:key="_id">
           <view bindtap="newsDetails" class="flex-b news-item" data-id="{{newsItem._id}}">
             <image class="news-img" src="{{newsItem.image}}"></image>
             <view class="con">

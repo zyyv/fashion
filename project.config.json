@@ -4,6 +4,7 @@
 	"setting": {
 		"urlCheck": false,
 		"es6": true,
+		"enhance": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
@@ -17,11 +18,11 @@
 			"disablePlugins": [],
 			"outputPath": ""
 		},
-		"enhance": true
+		"nodeModules": true
 	},
 	"appid": "wx70d49114809ab0c1",
 	"projectname": "garbage",
-	"libVersion": "2.2.5",
+	"libVersion": "2.10.1",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
 	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",

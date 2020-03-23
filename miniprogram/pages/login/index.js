@@ -20,17 +20,13 @@ Page({
   getUserInfo: function(e) {
     var that = this;
     app.getUserInfo(e,function(userInfo){
-      // console.log(userInfo)
-      wx.navigateBack({
-
-      })
+      console.log('成功')
+      that.goBack()
     })
   },
 
   goBack() {
-    wx.navigateBack({
-
-    })
+    wx.navigateBack()
   },
 
 

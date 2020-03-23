@@ -36,7 +36,7 @@
   align-items: center;
 }
 
-.users image {
+.users .userimg {
   width: 42rpx;
   height: 42rpx;
   border-radius: 50%;

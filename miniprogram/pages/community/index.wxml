@@ -18,12 +18,12 @@
     </scroll-view>
     <view class="content">
       <view class="left">
-        <block wx:for="{{followPosts}}" wx:for-item="post" wx:key="{{post.postid}}">
+        <block wx:for="{{followPosts}}" wx:for-item="post" wx:key="_id">
           <post post="{{post}}" wx:if="{{index%2==0}}"></post>
         </block>
       </view>
       <view class="right">
-        <block wx:for="{{followPosts}}" wx:for-item="post" wx:key="{{post.postid}}">
+        <block wx:for="{{followPosts}}" wx:for-item="post" wx:key="_id">
           <post post="{{post}}" wx:if="{{index%2==1}}"></post>
         </block>
       </view>
@@ -34,7 +34,7 @@
       <block>
         <swiper-item>
           <view class="superTalk">
-            <view wx:for="{{talksArr}}" wx:key="{{index}}" wx:if="{{index < 4}}" class="talk-item">
+            <view wx:for="{{talksArr}}" wx:key="index" wx:if="{{index < 4}}" class="talk-item">
               <image src="{{item.img}}"></image>
               <view class="talk-info">
                 <view class="info-title">#{{item.name}}</view>
@@ -47,7 +47,7 @@
       <block wx:if="{{talksArr.length > 4}}">
         <swiper-item>
           <view class="superTalk">
-            <view wx:for="{{talksArr}}" wx:key="{{index}}" wx:if="{{index >= 4 && index <= 7}}" class="talk-item">
+            <view wx:for="{{talksArr}}" wx:key="index" wx:if="{{index >= 4 && index <= 7}}" class="talk-item">
               <image src="{{item.img}}"></image>
               <view class="talk-info">
                 <view class="info-title">#{{item.name}}</view>
@@ -61,12 +61,12 @@
     <view class="transparent-line"></view>
     <view class="content">
       <view class="left">
-        <block wx:for="{{followPosts}}" wx:for-item="post" wx:key="{{post.postid}}">
+        <block wx:for="{{followPosts}}" wx:for-item="post" wx:key="_id">
           <post post="{{post}}" wx:if="{{index%2==0}}"></post>
         </block>
       </view>
       <view class="right">
-        <block wx:for="{{followPosts}}" wx:for-item="post" wx:key="{{post.postid}}">
+        <block wx:for="{{followPosts}}" wx:for-item="post" wx:key="_id">
           <post post="{{post}}" wx:if="{{index%2==1}}"></post>
         </block>
       </view>
@@ -75,12 +75,12 @@
   <van-tab title="最新">
     <view class="content">
       <view class="left">
-        <block wx:for="{{followPosts}}" wx:for-item="post" wx:key="{{post.postid}}">
+        <block wx:for="{{followPosts}}" wx:for-item="post" wx:key="_id">
           <post post="{{post}}" wx:if="{{index%2==0}}"></post>
         </block>
       </view>
       <view class="right">
-        <block wx:for="{{followPosts}}" wx:for-item="post" wx:key="{{post.postid}}">
+        <block wx:for="{{followPosts}}" wx:for-item="post" wx:key="_id">
           <post post="{{post}}" wx:if="{{index%2==1}}"></post>
         </block>
       </view>
