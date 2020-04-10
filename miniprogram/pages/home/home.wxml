@@ -64,8 +64,8 @@
         </block>
       </view>
       <view class="news-footer">
-        <van-loading wx-if="{{showLoading}}" size="20px" type="spinner" color="#3a9afa" />
-        <view class="noMoreData" wx-if="{{!continueLoad}}">没有更多数据啦···</view>
+        <van-loading wx:if="{{showLoading}}" size="20px" type="spinner" color="#3a9afa" />
+        <view class="noMoreData" wx:if="{{!continueLoad}}">没有更多数据啦···</view>
       </view>
     </view>
   </view>
